@@ -41,6 +41,10 @@ def MACD(codeCon, type):
         jsonResult['macd_M_' + type] = '[\]'
 
 
+    if (macdsignal[-1] < 0):
+        jsonResult['macd_small_than_0' + type] = 'Y'
+
+
     if (macd[-1] > macd[-2]):
         jsonResult['macd_K_' + type] = '[/]'
     if (macd[-1] < macd[-2]):
