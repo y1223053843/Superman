@@ -23,31 +23,31 @@ def MACD(codeCon, type):
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
     result = ''
-    jsonDic = {}
+    jsonResult = {}
     if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
-        jsonDic['macd_Z_' + type] = '[V]'
+        jsonResult['macd_Z_' + type] = '[V]'
     if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
-        jsonDic['macd_Z_' + type] = '[/\]'
+        jsonResult['macd_Z_' + type] = '[/\]'
     if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
-        jsonDic['macd_Z_' + type] = '[/]'
+        jsonResult['macd_Z_' + type] = '[/]'
     if (macdhist[-1] < macdhist[-2] and macdhist[-2] < macdhist[-3]):
-        jsonDic['macd_Z_' + type] = '[\]'
+        jsonResult['macd_Z_' + type] = '[\]'
     if (macdhist[-1] > 0 and macdhist[-2] < 0):
-        jsonDic['macd_Z_' + type] = '[X]'
+        jsonResult['macd_Z_' + type] = '[X]'
 
     if (macdsignal[-1] > macdsignal[-2]):
-        jsonDic['macd_M_' + type] = '[/]'
+        jsonResult['macd_M_' + type] = '[/]'
     if (macdsignal[-1] < macdsignal[-2]):
-        jsonDic['macd_M_' + type] = '[\]'
+        jsonResult['macd_M_' + type] = '[\]'
 
 
     if (macd[-1] > macd[-2]):
-        jsonDic['macd_K_' + type] = '[/]'
+        jsonResult['macd_K_' + type] = '[/]'
     if (macd[-1] < macd[-2]):
-        jsonDic['macd_K_' + type] = '[\]'
+        jsonResult['macd_K_' + type] = '[\]'
 
-    return jsonDic,result
+    return macd,macdsignal,macdhist,jsonResult,result
 
-#jsonDic,result = MACD('300201', 'D')
-#print jsonDic
+#macd,macdsignal,macdhist,jsonResult,result = MACD('300201', '60')
+#print jsonResult
 #print result
