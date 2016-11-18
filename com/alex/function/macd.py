@@ -22,36 +22,38 @@ def MACD(codeCon, type):
     # macd 为快线 macdsignal为慢线，macdhist为柱体
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
-    result = ''
+    tableresult = '<div class="wiz-table-container" style="position: relative; padding: 15px 0px 5px;"><div class="wiz-table-body"><table style="width: 1200px;"><tbody><tr>'
     jsonResult = {}
     if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
-        jsonResult['macd_Z_' + type] = '[V]'
+        jsonResult['MACD_Z_' + type] = '[V]'
     if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
-        jsonResult['macd_Z_' + type] = '[/\]'
+        jsonResult['MACD_Z_' + type] = '[/\]'
     if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
-        jsonResult['macd_Z_' + type] = '[/]'
+        jsonResult['MACD_Z_' + type] = '[/]'
     if (macdhist[-1] < macdhist[-2] and macdhist[-2] < macdhist[-3]):
-        jsonResult['macd_Z_' + type] = '[\]'
+        jsonResult['MACD_Z_' + type] = '[\]'
     if (macdhist[-1] > 0 and macdhist[-2] < 0):
-        jsonResult['macd_Z_' + type] = '[X]'
+        jsonResult['MACD_Z_' + type] = '[X]'
 
     if (macdsignal[-1] > macdsignal[-2]):
-        jsonResult['macd_M_' + type] = '[/]'
+        jsonResult['MACD_M_' + type] = '[/]'
     if (macdsignal[-1] < macdsignal[-2]):
-        jsonResult['macd_M_' + type] = '[\]'
+        jsonResult['MACD_M_' + type] = '[\]'
 
 
     if (macdsignal[-1] < 0):
-        jsonResult['macd_small_than_0' + type] = 'Y'
+        jsonResult['MACD慢线小于0_' + type] = 'Y'
 
 
     if (macd[-1] > macd[-2]):
-        jsonResult['macd_K_' + type] = '[/]'
+        jsonResult['MACD_K_' + type] = '[/]'
     if (macd[-1] < macd[-2]):
-        jsonResult['macd_K_' + type] = '[\]'
+        jsonResult['MACD_K_' + type] = '[\]'
 
-    return macd,macdsignal,macdhist,jsonResult,result
+    tableresult += '</tr></tbody></table></div></div>'
 
-#macd,macdsignal,macdhist,jsonResult,result = MACD('300201', '60')
+    return macd,macdsignal,macdhist,jsonResult,tableresult
+
+#macd,macdsignal,macdhist,jsonResult,result = MACD('300201', 'W')
 #print jsonResult
 #print result

@@ -25,26 +25,26 @@ def BBANDS(codeCon, type):
     result = ''
     jsonResult = {}
     if (middleband[-1] > middleband[-2] and middleband[-3] > middleband[-2]):
-        jsonResult['bbans_M_' + type] = '[V]'
+        jsonResult['布林_M_' + type] = '[V]'
 
     if (middleband[-1] < middleband[-2] and middleband[-3] < middleband[-2]):
-        jsonResult['bbans_M_' + type] = '[/\]'
+        jsonResult['布林_M_' + type] = '[/\]'
 
     if (middleband[-1] > middleband[-2] and middleband[-2] > middleband[-3]):
-        jsonResult['bbans_M_' + type] = '[/]'
+        jsonResult['布林_M_' + type] = '[/]'
 
     if (middleband[-1] < middleband[-2] and middleband[-2] < middleband[-3]):
-        jsonResult['bbans_M_' + type] = '[\]'
+        jsonResult['布林_M_' + type] = '[\]'
 
 
     if (doubleCloseArray[-1] < lowerband[-1]):
-        jsonResult['bbans_chuan' + type] = 'xiachuan'
+        jsonResult['布林_下穿_' + type] = 'Y'
 
     if (doubleCloseArray[-1] > upperband[-1]):
-        jsonResult['bbans_chuan' + type] = 'shangchuan'
+        jsonResult['布林_上穿_' + type] = 'Y'
 
     return upperband, middleband, lowerband, jsonResult, result
 
-upperband, middleband, lowerband, jsonResult, result = BBANDS('300201', 'D')
-print jsonResult
+#upperband, middleband, lowerband, jsonResult, result = BBANDS('300201', 'D')
+#print jsonResult
 #print result
