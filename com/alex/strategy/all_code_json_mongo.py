@@ -1,8 +1,9 @@
 #encoding=utf-8
 
 import sys
-sys.path.append('../function')
-sys.path.append('../utils')
+sys.path.append('../utils/mongo_util')
+sys.path.append('../function/macd')
+sys.path.append('../function/bbands')
 import logging
 import ConfigParser
 import tushare as ts
