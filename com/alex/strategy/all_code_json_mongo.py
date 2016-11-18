@@ -1,5 +1,8 @@
 #encoding=utf-8
 
+import sys
+sys.path.append('../function')
+sys.path.append('../utils')
 import logging
 import ConfigParser
 import tushare as ts
