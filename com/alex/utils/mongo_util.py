@@ -25,7 +25,7 @@ def insertRecord(record):
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
     table.insert(record)
 
-def insertRecord(record,collectionName):
+def insertRecord_param(record,collectionName):
     #获取表
     table = db.get_collection(collectionName)
     table.insert(record)
@@ -44,7 +44,7 @@ def toDataFrame(query,title):
     email_util.sendMailAttatch(email_util.template2(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     return df
 
-def toDataFrame(query, title, collectionName):
+def toDataFrame_param(query, title, collectionName):
     #获取表
     table = db.get_collection(collectionName)
     cursor = table.find(query)

@@ -41,9 +41,9 @@ def execute():
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
-            jsonDic['编码'] = '_' + codeItem
-            jsonDic['名称'] = all_code.loc[codeItem,'name']
-            jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
+            jsonDic['1编码'] = '_' + codeItem
+            jsonDic['2名称'] = all_code.loc[codeItem,'name']
+            jsonDic['3所属行业'] = all_code.loc[codeItem,'industry']
             jsonDic['PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
@@ -58,6 +58,7 @@ def execute():
                               + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
                               + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items()))
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
+            print e
             logging.error("error:" + codeItem)
 
 '''

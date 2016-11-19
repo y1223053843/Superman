@@ -41,8 +41,8 @@ def execute():
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
-            jsonDic['时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['编码'] = '_' + codeItem
+            jsonDic['1时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            jsonDic['2编码'] = '_' + codeItem
             #jsonDic['名称'] = all_code.loc[codeItem,'name']
             #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
             #jsonDic['PE'] = all_code.loc[codeItem,'pe']
@@ -55,7 +55,7 @@ def execute():
             jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
 
-            insertRecord(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
+            insertRecord_param(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
                               + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
                               + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items()), collectionName)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
@@ -68,5 +68,5 @@ def execute():
 '''
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
 execute()
-toDataFrame({}, '分级基金', collectionName)
+toDataFrame_param({}, '分级基金', collectionName)
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
