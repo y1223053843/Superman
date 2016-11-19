@@ -57,7 +57,7 @@ def execute():
             insertRecord(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
                               + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
                               + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items()))
-        except (IOError, TypeError, NameError, IndexError) as e:
+        except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
 
 '''
