@@ -25,7 +25,7 @@ def insertRecord(record):
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
     table.insert(record)
 
-def insertRecordWithCollectionName(record,collectionName):
+def insertRecord(record,collectionName):
     #获取表
     table = db.get_collection(collectionName)
     table.insert(record)
@@ -35,22 +35,22 @@ def insertRecordWithCollectionName(record,collectionName):
 转化成DataFrame文件
 ###################################################################################################
 '''
-def toDataFrame(query):
+def toDataFrame(query,title):
     #获取表
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
     cursor = table.find(query)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendMailAttatch(email_util.template2(""),"./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendMailAttatch(email_util.template2(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     return df
 
-def toDataFrameWithCollectionName(query, collectionName):
+def toDataFrame(query, title, collectionName):
     #获取表
     table = db.get_collection(collectionName)
     cursor = table.find(query)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + collectionName + ".csv")
-    email_util.sendMailAttatch(email_util.template2(""),"./report/" + collectionName + ".csv", collectionName + ".csv")
+    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
 
