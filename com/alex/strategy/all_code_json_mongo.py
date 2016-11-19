@@ -28,7 +28,7 @@ def execute():
     all_code = ts.get_stock_basics()
     all_code_index = all_code.index
     for codeItem in all_code_index:
-        print "============================" + codeItem
+        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
 
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30  = MACD(codeItem,  '30')
@@ -65,7 +65,7 @@ def execute():
 主运行函数main
 ###############################################################################
 '''
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '===================All_code_json_mongo Start=========================='
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
 execute()
 toDataFrame({})
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '===================All_code_json_mongo End=========================='
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
