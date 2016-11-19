@@ -5,6 +5,7 @@ sys.path.append('/root/worksapce/Superman')
 import logging
 import ConfigParser
 import tushare as ts
+import time
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
@@ -64,5 +65,7 @@ def execute():
 主运行函数main
 ###############################################################################
 '''
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '===================All_code_json_mongo Start=========================='
 execute()
 toDataFrame({})
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '===================All_code_json_mongo End=========================='
