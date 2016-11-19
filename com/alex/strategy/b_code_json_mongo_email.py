@@ -55,7 +55,7 @@ def execute():
             jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
 
-            insertRecord(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
+            insertRecordWithCollectionName(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
                               + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
                               + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items()), collectionName)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
@@ -68,5 +68,5 @@ def execute():
 '''
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
 execute()
-toDataFrame({},collectionName)
+toDataFrameWithCollectionName({},collectionName)
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
