@@ -4,8 +4,10 @@ import sys
 sys.path.append('/root/worksapce/Superman')
 import logging
 import ConfigParser
+from pandas import DataFrame
 import tushare as ts
 import time
+import numpy
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
@@ -27,6 +29,10 @@ collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.tim
 '''
 def execute():
     all_code_index  = ['150128','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
+    all_code_name  = ['新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
+
+    all_code = DataFrame(all_code_name,index=all_code_index,columns=['name'])
+
     for codeItem in all_code_index:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
@@ -43,7 +49,7 @@ def execute():
             jsonDic = {}
             jsonDic['1时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['2编码'] = '_' + codeItem
-            #jsonDic['名称'] = all_code.loc[codeItem,'name']
+            jsonDic['3名称'] = all_code.loc[codeItem,'name']
             #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
             #jsonDic['PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
@@ -68,5 +74,5 @@ def execute():
 '''
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
 execute()
-toDataFrame_param({}, '分级基金', collectionName)
+toDataFrame_param({}, 'B_Code_JSON_Mongo', collectionName)
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
