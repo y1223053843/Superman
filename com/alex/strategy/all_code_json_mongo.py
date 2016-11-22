@@ -44,7 +44,7 @@ def execute():
             jsonDic['01编码'] = '_' + codeItem
             jsonDic['02名称'] = all_code.loc[codeItem,'name']
             jsonDic['03所属行业'] = all_code.loc[codeItem,'industry']
-            jsonDic['PE'] = all_code.loc[codeItem,'pe']
+            jsonDic['04PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]

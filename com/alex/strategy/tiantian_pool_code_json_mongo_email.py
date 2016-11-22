@@ -3,17 +3,15 @@
 import sys
 sys.path.append('/root/worksapce/Superman')
 import logging
-import ConfigParser
 from pandas import DataFrame
-import tushare as ts
-import time
-import numpy
+import time as time
 import lxml.html
 import lxml.etree
 import curl
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+import common
 
 '''
 ##################################
@@ -48,9 +46,9 @@ def execute(all_code_index, all_title):
             jsonDic = {}
             jsonDic['01时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02编码'] = '_' + codeItem
-            jsonDic['03行业'] = all_code.loc[codeItem,'hangye']
-            #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
-            #jsonDic['PE'] = all_code.loc[codeItem,'pe']
+            jsonDic['03名称'] = common.gupiaomingcheng(codeItem)
+            jsonDic['04所属行业'] = all_code.loc[codeItem,'hangye']
+            jsonDic['05涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
@@ -67,6 +65,7 @@ def execute(all_code_index, all_title):
             insertRecord_param(jsonParam, collectionName)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
+            print e
 
 '''
 ###############################################################################

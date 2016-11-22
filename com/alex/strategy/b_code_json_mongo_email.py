@@ -3,22 +3,18 @@
 import sys
 sys.path.append('/root/worksapce/Superman')
 import logging
-import ConfigParser
 from pandas import DataFrame
-import tushare as ts
-import time
-import numpy
+import time as time
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+import common
 
 '''
 ##################################
 常量
 ##################################
 '''
-cf = ConfigParser.RawConfigParser()
-cf.read('../config/spark002_dev.conf')
 collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
@@ -28,7 +24,7 @@ collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.tim
 #################################
 '''
 def execute():
-    all_code_index  = ['150128','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
+    all_code_index  = ['150218','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
     all_code_name  = ['新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
 
     all_code = DataFrame(all_code_name,index=all_code_index,columns=['name'])
@@ -50,8 +46,7 @@ def execute():
             jsonDic['01时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02编码'] = '_' + codeItem
             jsonDic['03名称'] = all_code.loc[codeItem,'name']
-            #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
-            #jsonDic['PE'] = all_code.loc[codeItem,'pe']
+            jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
@@ -69,6 +64,7 @@ def execute():
             insertRecord_param(jsonParam, collectionName)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
+            print e
 
 '''
 ###############################################################################
