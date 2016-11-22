@@ -8,6 +8,9 @@ from pandas import DataFrame
 import tushare as ts
 import time
 import numpy
+import lxml.html
+import lxml.etree
+import curl
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
@@ -27,11 +30,9 @@ collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.tim
 说明：
 #################################
 '''
-def execute():
-    all_code_index  = ['150128','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
-    all_code_name  = ['新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
+def execute(all_code_index, all_title):
 
-    all_code = DataFrame(all_code_name,index=all_code_index,columns=['name'])
+    all_code = DataFrame(all_title,index=all_code_index,columns=['hangye'])
 
     for codeItem in all_code_index:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -49,7 +50,7 @@ def execute():
             jsonDic = {}
             jsonDic['1时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['2编码'] = '_' + codeItem
-            jsonDic['3名称'] = all_code.loc[codeItem,'name']
+            jsonDic['3行业'] = all_code.loc[codeItem,'hangye']
             #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
             #jsonDic['PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
@@ -60,7 +61,6 @@ def execute():
             jsonDic['验证_布林_60'] =  '%.3f' % middleband_60[-1] + '_' +  '%.3f' % middleband_60[-2] + '_' +  '%.3f' % middleband_60[-3]
             jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
-
 
             jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
                              + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
@@ -76,6 +76,33 @@ def execute():
 ###############################################################################
 '''
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
-execute()
-toDataFrame_param({}, 'B_Code_JSON_Mongo', collectionName)
+def download(url):
+    c = curl.Curl()
+    c.set_timeout(8)
+    c.get(url)
+    return c.body()
+
+base_url = 'http://www.ourkp.com/bk'
+ht_string = download(base_url)
+#print ht_string
+ht_doc = lxml.html.fromstring(ht_string, base_url)
+#print ht_doc
+elms = ht_doc.xpath("//div[@class='hotT']/ul/li")
+
+result = ''
+
+all_code = {}
+all_title = {}
+for i in elms:
+    title = i.xpath("./strong")[0].get("title")
+    result += '<br><B>' + title + '</B><br>'
+    print  '[' + time.strftime('%m-%d', time.localtime(time.time())) +  title + ']'
+    ps = i.xpath("./p/a[@class='hot']")
+    for p in ps:
+        code = p.get('stockcode')
+        all_code.append(code)
+        all_title.append(title)
+
+execute(all_code, all_title)
+toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName)
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
