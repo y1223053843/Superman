@@ -46,9 +46,9 @@ def execute(all_code_index, all_title):
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
-            jsonDic['1时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['2编码'] = '_' + codeItem
-            jsonDic['3行业'] = all_code.loc[codeItem,'hangye']
+            jsonDic['01时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            jsonDic['02编码'] = '_' + codeItem
+            jsonDic['03行业'] = all_code.loc[codeItem,'hangye']
             #jsonDic['所属行业'] = all_code.loc[codeItem,'industry']
             #jsonDic['PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
