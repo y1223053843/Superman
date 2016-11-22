@@ -20,9 +20,7 @@ from com.alex.function.bbands import *
 常量
 ##################################
 '''
-cf = ConfigParser.RawConfigParser()
-cf.read('../config/spark002_dev.conf')
-collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
@@ -75,7 +73,7 @@ def execute(all_code_index, all_title):
 主运行函数main
 ###############################################################################
 '''
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email Start====='
 def download(url):
     c = curl.Curl()
     c.set_timeout(8)
@@ -91,8 +89,8 @@ elms = ht_doc.xpath("//div[@class='hotT']/ul/li")
 
 result = ''
 
-all_code = {}
-all_title = {}
+all_code = []
+all_title = []
 for i in elms:
     title = i.xpath("./strong")[0].get("title")
     result += '<br><B>' + title + '</B><br>'
@@ -100,9 +98,10 @@ for i in elms:
     ps = i.xpath("./p/a[@class='hot']")
     for p in ps:
         code = p.get('stockcode')
+        print code
         all_code.append(code)
         all_title.append(title)
 
 execute(all_code, all_title)
 toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName)
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email End====='
