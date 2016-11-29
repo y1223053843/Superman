@@ -71,7 +71,12 @@ def execute():
 主运行函数main
 ###############################################################################
 '''
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
-execute()
-toDataFrame_param({}, 'B_Code_JSON_Mongo', collectionName)
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='
+
+param = sys.argv[0]
+if (param == 1):
+    print 'param:' + param
+else:
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email Start====='
+    execute()
+    toDataFrame_param({}, 'B_Code_JSON_Mongo', collectionName)
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====b_code_json_mongo_email End====='

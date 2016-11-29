@@ -68,7 +68,11 @@ def execute():
 主运行函数main
 ###############################################################################
 '''
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
-execute()
-toDataFrame({},'All_Code_JSON_Mongo')
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
+param = sys.argv[0]
+if (param == 1):
+    print 'param:' + param
+else:
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
+    execute()
+    toDataFrame({},'All_Code_JSON_Mongo')
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='

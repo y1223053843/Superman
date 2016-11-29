@@ -72,35 +72,43 @@ def execute(all_code_index, all_title):
 主运行函数main
 ###############################################################################
 '''
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email Start====='
 def download(url):
     c = curl.Curl()
     c.set_timeout(8)
     c.get(url)
     return c.body()
 
-base_url = 'http://www.ourkp.com/bk'
-ht_string = download(base_url)
-#print ht_string
-ht_doc = lxml.html.fromstring(ht_string, base_url)
-#print ht_doc
-elms = ht_doc.xpath("//div[@class='hotT']/ul/li")
+def get_all_code():
+    base_url = 'http://www.ourkp.com/bk'
+    ht_string = download(base_url)
+    #print ht_string
+    ht_doc = lxml.html.fromstring(ht_string, base_url)
+    #print ht_doc
+    elms = ht_doc.xpath("//div[@class='hotT']/ul/li")
 
-result = ''
+    result = ''
 
-all_code = []
-all_title = []
-for i in elms:
-    title = i.xpath("./strong")[0].get("title")
-    result += '<br><B>' + title + '</B><br>'
-    print  '[' + time.strftime('%m-%d', time.localtime(time.time())) +  title + ']'
-    ps = i.xpath("./p/a[@class='hot']")
-    for p in ps:
-        code = p.get('stockcode')
-        print code
-        all_code.append(code)
-        all_title.append(title)
+    all_code = []
+    all_title = []
+    for i in elms:
+        title = i.xpath("./strong")[0].get("title")
+        result += '<br><B>' + title + '</B><br>'
+        print  '[' + time.strftime('%m-%d', time.localtime(time.time())) +  title + ']'
+        ps = i.xpath("./p/a[@class='hot']")
+        for p in ps:
+            code = p.get('stockcode')
+            print code
+            all_code.append(code)
+            all_title.append(title)
+    return all_code, all_title
 
-execute(all_code, all_title)
-toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName)
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email End====='
+
+param = sys.argv[0]
+if (param == 1):
+    print 'param:' + param
+else:
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email Start====='
+    all_code, all_title = get_all_code()
+    execute(all_code, all_title)
+    toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName)
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email End====='
