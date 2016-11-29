@@ -9,6 +9,7 @@ import time
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+import common
 
 '''
 ##################################
@@ -43,8 +44,9 @@ def execute():
             jsonDic = {}
             jsonDic['01编码'] = '_' + codeItem
             jsonDic['02名称'] = all_code.loc[codeItem,'name']
-            jsonDic['03所属行业'] = all_code.loc[codeItem,'industry']
-            jsonDic['04PE'] = all_code.loc[codeItem,'pe']
+            jsonDic['03涨跌幅'] = common.zhangdiefu(codeItem)
+            jsonDic['04所属行业'] = all_code.loc[codeItem,'industry']
+            jsonDic['05PE'] = all_code.loc[codeItem,'pe']
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
