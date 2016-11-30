@@ -33,20 +33,22 @@ def execute():
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
 
-            macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30  = MACD(codeItem,  '30')
-            macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60  = MACD(codeItem,  '60')
-            macd_D,macdsignal_D,macdhist_D,jsonResult_D,result_D  = MACD(codeItem,  'D')
-            macd_W,macdsignal_W,macdhist_W,jsonResult_W,result_W  = MACD(codeItem,  'W')
-            upperband_30, middleband_30, lowerband_30, jsonResult_b_30, result_30 = BBANDS(codeItem, '30')
-            upperband_60, middleband_60, lowerband_60, jsonResult_b_60, result_60 = BBANDS(codeItem, '60')
-            upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_D = BBANDS(codeItem, 'D')
-            upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W = BBANDS(codeItem, 'W')
+            macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
+            macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60,mairuresult_60,maichuresult_60  = MACD(codeItem,  '60')
+            macd_D,macdsignal_D,macdhist_D,jsonResult_D,result_D,mairuresult_D,maichuresult_D  = MACD(codeItem,  'D')
+            macd_W,macdsignal_W,macdhist_W,jsonResult_W,result_W,mairuresult_W,maichuresult_W  = MACD(codeItem,  'W')
+            upperband_30, middleband_30, lowerband_30, jsonResult_b_30, result_30,mairuresult_bl_30,maichuresult_bl_30 = BBANDS(codeItem, '30')
+            upperband_60, middleband_60, lowerband_60, jsonResult_b_60, result_60,mairuresult_bl_60,maichuresult_bl_60 = BBANDS(codeItem, '60')
+            upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_D,mairuresult_bl_D,maichuresult_bl_D = BBANDS(codeItem, 'D')
+            upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
             jsonDic['01时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02编码'] = '_' + codeItem
             jsonDic['03名称'] = all_code.loc[codeItem,'name']
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
+            jsonDic['05买入信息'] = mairuresult_60 + '' + mairuresult_D + '' + mairuresult_bl_60 + '' + mairuresult_bl_D
+            jsonDic['06卖出信息'] = maichuresult_60 + '' + maichuresult_D + '' + maichuresult_bl_60 + '' + maichuresult_bl_D
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
