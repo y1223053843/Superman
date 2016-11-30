@@ -50,7 +50,7 @@ def BBANDS(codeCon, type):
 
     if (doubleHighArray[-1] > upperband[-1]):
         jsonResult['布林_上穿_' + type] = 'Y'
-        maichuresult = type + '_最高值上传布林线上轨，卖出'
+        maichuresult = type + '_最高值上穿布林线上轨，卖出'
 
     return upperband, middleband, lowerband, jsonResult, result,mairuresult,maichuresult
 

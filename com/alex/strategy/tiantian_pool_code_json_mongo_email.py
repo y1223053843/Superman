@@ -49,8 +49,8 @@ def execute(all_code_index, all_title):
             jsonDic['03名称'] = common.gupiaomingcheng(codeItem)
             jsonDic['04所属行业'] = all_code.loc[codeItem,'hangye']
             jsonDic['05涨跌幅'] = common.zhangdiefu(codeItem)
-            jsonDic['06买入信息'] = mairuresult_60 + '' + mairuresult_D + '' + mairuresult_bl_60 + '' + mairuresult_bl_D
-            jsonDic['07卖出信息'] = maichuresult_60 + '' + maichuresult_D + '' + maichuresult_bl_60 + '' + maichuresult_bl_D
+            jsonDic['06买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
+            jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
