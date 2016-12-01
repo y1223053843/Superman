@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import time
 import pandas as pd
 import email_util
+import datetime
 
 import sys
 reload(sys)
@@ -53,6 +54,30 @@ def toDataFrame_param(query, title, collectionName):
     email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
+def toDataFrame_param_for_tiantian(query, title, collectionName):
+    #获取表
+    table = db.get_collection(collectionName)
+    cursor = table.find(query)
+    listresult =list(cursor)
+
+    today = datetime.date.today()
+    t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
+
+    for i in t :
+        nday = datetime.timedelta(days= i)
+        curday = today - nday
+        print "report_tiantain_" + curday.strftime('%Y-%m-%d')
+        table = db.get_collection("report_tiantain_" + curday.strftime('%Y-%m-%d'))
+        cursor = table.find(query)
+        listtmp = list(cursor)
+        listresult.append(listtmp)
+
+    df = pd.DataFrame(listresult)
+
+    df.to_csv("./report/" + collectionName + ".csv")
+    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    return df
+
 
 #df = ts.get_hist_data('600848',ktype='D')
 #insertRecord(json.loads(df.to_json(orient='records')))
@@ -62,3 +87,4 @@ def toDataFrame_param(query, title, collectionName):
 #print 'success'
 
 #print toDataFrame({})
+#toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))

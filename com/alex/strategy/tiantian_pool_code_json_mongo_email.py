@@ -112,5 +112,7 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email Start====='
     all_code, all_title = get_all_code()
     execute(all_code, all_title)
+
+    #获取前两周时间数据
     toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName)
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_code_json_mongo_email End====='

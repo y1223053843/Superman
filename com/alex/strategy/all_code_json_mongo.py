@@ -42,6 +42,7 @@ def execute():
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
+            jsonDic['00时间'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['01编码'] = '_' + codeItem
             jsonDic['02名称'] = all_code.loc[codeItem,'name']
             jsonDic['03涨跌幅'] = common.zhangdiefu(codeItem)
