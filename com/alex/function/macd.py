@@ -16,7 +16,13 @@ sys.setdefaultencoding('utf-8')
 ###############################################################################
 '''
 def MACD(codeCon, type):
-    data_history = ts.get_k_data(codeCon, ktype = type)
+
+    data_history = ''
+    if (codeCon == '000001'):
+        data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+    else:
+        data_history = ts.get_k_data(codeCon, ktype = type)
+
     closeArray = num.array(data_history['close'])
 
     # macd 为快线 macdsignal为慢线，macdhist为柱体
@@ -61,6 +67,6 @@ def MACD(codeCon, type):
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
-#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('300201', 'W')
+#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('000001', 'D')
 #print jsonResult
 #print result

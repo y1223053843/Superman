@@ -24,9 +24,8 @@ collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.tim
 #################################
 '''
 def execute():
-    all_code_index  = ['150218','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
-    all_code_name  = ['新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
-
+    all_code_index  = ['000001','399001','399006','000980','600570','150218','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
+    all_code_name  = ['上证指数','深证指数','创业板指','金马股份','恒生电子','新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
     all_code = DataFrame(all_code_name,index=all_code_index,columns=['name'])
 
     for codeItem in all_code_index:

@@ -16,7 +16,12 @@ sys.setdefaultencoding('utf-8')
 ###############################################################################
 '''
 def BBANDS(codeCon, type):
-    data_history = ts.get_k_data(codeCon, ktype = type)
+    data_history = ''
+    if (codeCon == '000001'):
+        data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+    else:
+        data_history = ts.get_k_data(codeCon, ktype = type)
+
     closeArray = num.array(data_history['close'])
     highArray = num.array(data_history['high'])
     lowArray = num.array(data_history['low'])
