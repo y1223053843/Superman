@@ -70,7 +70,7 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
         table = db.get_collection("report_tiantain_" + curday.strftime('%Y-%m-%d'))
         cursor = table.find(query)
         listtmp = list(cursor)
-        listresult.append(listtmp)
+        listresult = listresult + listtmp
 
     df = pd.DataFrame(listresult)
 
@@ -87,4 +87,4 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 #print 'success'
 
 #print toDataFrame({})
-#toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))

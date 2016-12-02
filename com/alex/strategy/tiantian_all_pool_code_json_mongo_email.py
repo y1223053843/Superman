@@ -3,21 +3,24 @@
 import sys
 sys.path.append('/root/worksapce/Superman')
 import logging
-import ConfigParser
-import tushare as ts
-import time
+from pandas import DataFrame
+import time as time
+import lxml.html
+import lxml.etree
+import curl
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
 import common
+import math
 
 '''
 ##################################
 常量
 ##################################
 '''
-cf = ConfigParser.RawConfigParser()
-cf.read('../config/spark002_dev.conf')
+collectionName = "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName2 = "report_tiantain_all_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
@@ -25,10 +28,15 @@ cf.read('../config/spark002_dev.conf')
 说明：
 #################################
 '''
-def execute():
-    all_code = ts.get_stock_basics()
-    all_code_index = all_code.index
+def execute(all_code_index, all_title,all_time):
+
+    all_code = DataFrame([all_title,all_time],index=all_code_index,columns=['hangye','time'])
+
     for codeItem in all_code_index:
+        #print math.isnan(codeItem)
+        #if (math.isnan(codeItem)):
+        #    continue
+        print codeItem
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
 
@@ -43,11 +51,12 @@ def execute():
 
             jsonDic = {}
             jsonDic['00Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['01Code'] = '_' + codeItem
-            jsonDic['02Name'] = all_code.loc[codeItem,'name']
-            jsonDic['03涨跌幅'] = common.zhangdiefu(codeItem)
-            jsonDic['04所属行业'] = all_code.loc[codeItem,'industry']
-            jsonDic['05PE'] = all_code.loc[codeItem,'pe']
+            jsonDic['01Time'] = all_code.loc[codeItem,'time']
+            jsonDic['02Code'] = codeItem
+            jsonDic['02Code2'] = '_' + codeItem
+            jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
+            jsonDic['04所属行业'] = all_code.loc[codeItem,'hangye']
+            jsonDic['05涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['06买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
             jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
@@ -59,23 +68,33 @@ def execute():
             jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
 
-            insertRecord(dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
-                              + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
-                              + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items()))
+            jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
+                             + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
+                             + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
+
+            insertRecord_param(jsonParam, collectionName2)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
-            print e
             logging.error("error:" + codeItem)
+            print e
 
 '''
 ###############################################################################
 主运行函数main
 ###############################################################################
 '''
+
 param = sys.argv[0]
 if (param == 1):
     print 'param:' + param
 else:
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
-    execute()
-    toDataFrame({},'All_Code_JSON_Mongo')
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_all_code_json_mongo_email Start====='
+    df = toDataFrame_param_for_tiantian({}, 'Tiantian_All_Pool_Code_JSON_Mongo', collectionName)
+    all_code = df['02Code']
+    all_title = df['04Hangye']
+    all_time = df['01Time']
+    #print all_code
+    #print all_title
+    execute(all_code, all_title)
+    toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName2)
+
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_all_code_json_mongo_email End====='
