@@ -61,13 +61,12 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
     listresult =list(cursor)
 
     today = datetime.date.today()
-    #t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
-    t = (0,1)
+    t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
 
     for i in t :
         nday = datetime.timedelta(days= i)
         curday = today - nday
-        #print "report_tiantain_" + curday.strftime('%Y-%m-%d')
+        print "report_tiantain_" + curday.strftime('%Y-%m-%d')
         table = db.get_collection("report_tiantain_" + curday.strftime('%Y-%m-%d'))
         cursor = table.find(query)
         listtmp = list(cursor)
@@ -75,8 +74,8 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 
     df = pd.DataFrame(listresult)
 
-    #df.to_csv("./report/" + collectionName + ".csv")
-    #email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    df.to_csv("./report/" + collectionName + ".csv")
+    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
 
@@ -88,4 +87,4 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 #print 'success'
 
 #print toDataFrame({})
-#toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))

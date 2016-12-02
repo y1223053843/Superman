@@ -28,18 +28,14 @@ collectionName2 = "report_tiantain_all_" + time.strftime('%Y-%m-%d', time.localt
 说明：
 #################################
 '''
-def execute(all_code_index, all_title,all_time):
+def execute(all_code_index, all_title, all_time):
 
-    all_code = DataFrame([all_title,all_time],index=all_code_index,columns=['hangye','time'])
+    all_code = DataFrame(all_title,index=all_code_index,columns=['hangye'])
+    all_code_time = DataFrame(all_time,index=all_code_index,columns=['time'])
 
     for codeItem in all_code_index:
-        #print math.isnan(codeItem)
-        #if (math.isnan(codeItem)):
-        #    continue
-        print codeItem
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
-
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
             macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60,mairuresult_60,maichuresult_60  = MACD(codeItem,  '60')
             macd_D,macdsignal_D,macdhist_D,jsonResult_D,result_D,mairuresult_D,maichuresult_D  = MACD(codeItem,  'D')
@@ -50,9 +46,9 @@ def execute(all_code_index, all_title,all_time):
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
-            jsonDic['00Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['01Time'] = all_code.loc[codeItem,'time']
-            jsonDic['02Code'] = codeItem
+            jsonDic['00实时Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            jsonDic['01原始Time'] = all_code_time.loc[codeItem,'time']
+            #jsonDic['02Code'] = codeItem
             jsonDic['02Code2'] = '_' + codeItem
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04所属行业'] = all_code.loc[codeItem,'hangye']
@@ -89,12 +85,10 @@ if (param == 1):
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_all_code_json_mongo_email Start====='
     df = toDataFrame_param_for_tiantian({}, 'Tiantian_All_Pool_Code_JSON_Mongo', collectionName)
-    all_code = df['02Code']
-    all_title = df['04Hangye']
-    all_time = df['01Time']
-    #print all_code
-    #print all_title
-    execute(all_code, all_title)
-    toDataFrame_param({}, 'Tiantian_Pool_Code_JSON_Mongo', collectionName2)
+    all_code = df['02Code'].values
+    all_title = df['04Hangye'].values
+    all_time = df['01Time'].values
+    execute(all_code, all_title,all_time)
+    toDataFrame_param({}, 'Tiantian_All_Code_Json_Mongo_Email', collectionName2)
 
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_all_code_json_mongo_email End====='
