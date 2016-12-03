@@ -59,10 +59,12 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
     table = db.get_collection(collectionName)
     cursor = table.find(query)
     listresult =list(cursor)
+    print collectionName
+    print listresult.__len__()
 
     today = datetime.date.today()
     #t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
-    t = (0,1)
+    t = (1,2)
 
     for i in t :
         nday = datetime.timedelta(days= i)
@@ -71,6 +73,8 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
         table = db.get_collection("report_tiantain_" + curday.strftime('%Y-%m-%d'))
         cursor = table.find(query)
         listtmp = list(cursor)
+        print "report_tiantain_" + curday.strftime('%Y-%m-%d')
+        print listtmp.__len__()
         listresult = listresult + listtmp
 
     df = pd.DataFrame(listresult)
