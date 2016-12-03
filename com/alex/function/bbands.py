@@ -51,18 +51,16 @@ def BBANDS(codeCon, type):
     tianshu = ''
     if (type == 'D'):
         if (middleband[-1] > middleband[-2]):
-            tianshu = '_布林上升通道1天'
+            tianshu = 'D_布林上升通道1天'
 
             if (middleband[-2] > middleband[-3]):
-                tianshu = '_布林上升通道2天'
+                tianshu = 'D_布林上升通道2天'
 
                 if (middleband[-3] > middleband[-4]):
-                    tianshu = '_布林上升通道3天'
+                    tianshu = 'D_布林上升通道3天'
 
                     if (middleband[-4] > middleband[-5]):
-                        tianshu = '_布林上升通道4天'
-
-        result += type + tianshu
+                        tianshu = 'D_布林上升通道4天'
 
     if (doubleLowArray[-1] < lowerband[-1]):
         jsonResult['布林_下穿_' + type] = 'Y'

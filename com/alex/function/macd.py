@@ -59,18 +59,16 @@ def MACD(codeCon, type):
     tianshu = ''
     if (type == 'D'):
         if (macdsignal[-1] > macdsignal[-2]):
-            tianshu = '_MACD上升通道1天'
+            tianshu = 'D_MACD上升通道1天'
 
             if (macdsignal[-2] > macdsignal[-3]):
-                tianshu = '_MACD上升通道2天'
+                tianshu = 'D_MACD上升通道2天'
 
                 if (macdsignal[-3] > macdsignal[-4]):
-                    tianshu = '_MACD上升通道3天'
+                    tianshu = 'D_MACD上升通道3天'
 
                     if (macdsignal[-4] > macdsignal[-5]):
-                        tianshu = '_MACD上升通道4天'
-
-        tableresult += type + tianshu
+                        tianshu = 'D_MACD上升通道4天'
 
     if (macd[-1] > macd[-2]):
         jsonResult['MACD_K_' + type] = '[/]'
