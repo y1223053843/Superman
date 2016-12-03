@@ -62,6 +62,8 @@ def BBANDS(codeCon, type):
                     if (middleband[-4] > middleband[-5]):
                         tianshu = 'D_布林上升通道4天'
 
+        result = tianshu
+
     if (doubleLowArray[-1] < lowerband[-1]):
         jsonResult['布林_下穿_' + type] = 'Y'
         mairuresult = type + '_最低值下穿布林线下轨，买入'

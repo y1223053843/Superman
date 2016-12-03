@@ -70,6 +70,8 @@ def MACD(codeCon, type):
                     if (macdsignal[-4] > macdsignal[-5]):
                         tianshu = 'D_MACD上升通道4天'
 
+        tableresult = tianshu
+
     if (macd[-1] > macd[-2]):
         jsonResult['MACD_K_' + type] = '[/]'
     if (macd[-1] < macd[-2]):
