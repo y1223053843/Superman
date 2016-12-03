@@ -30,7 +30,9 @@ collectionName2 = "report_tiantain_all_" + time.strftime('%Y-%m-%d', time.localt
 '''
 def execute(all_code_index, all_title, all_time):
 
-    all_code = DataFrame(all_title,index=all_code_index,columns=['hangye'])
+    all_code = DataFrame({'codeitem':all_code_index,'hangye':all_title,'time':all_time},index=all_code_index)
+    all_code_drop = all_code.drop_duplicates()
+
     all_code_time = DataFrame(all_time,index=all_code_index,columns=['time'])
 
     for codeItem in all_code_index:
@@ -47,11 +49,11 @@ def execute(all_code_index, all_title, all_time):
 
             jsonDic = {}
             jsonDic['00实时Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['01原始Time'] = all_code_time.loc[codeItem,'time']
+            jsonDic['01原始Time'] = all_code_drop.loc[codeItem,'time']
             #jsonDic['02Code'] = codeItem
             jsonDic['02Code2'] = '_' + codeItem
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
-            jsonDic['04所属行业'] = all_code.loc[codeItem,'hangye']
+            jsonDic['04所属行业'] = all_code_drop.loc[codeItem,'hangye']
             jsonDic['05涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['06买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
             jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
