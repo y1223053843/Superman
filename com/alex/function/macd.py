@@ -28,7 +28,7 @@ def MACD(codeCon, type):
     # macd 为快线 macdsignal为慢线，macdhist为柱体
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
-    tableresult = '<div class="wiz-table-container" style="position: relative; padding: 15px 0px 5px;"><div class="wiz-table-body"><table style="width: 1200px;"><tbody><tr>'
+    tableresult = ''
     mairuresult = ''
     maichuresult = ''
     jsonResult = {}
@@ -56,14 +56,26 @@ def MACD(codeCon, type):
             jsonResult['MACD底部V型翻转_' + type] = 'Y'
             mairuresult += type + '_MACD在底部V型翻转，买入'
 
+    tianshu = ''
+    if (type == 'D'):
+        if (macdsignal[-1] > macdsignal[-2]):
+            tianshu = '_MACD上升通道1天'
+
+            if (macdsignal[-2] > macdsignal[-3]):
+                tianshu = '_MACD上升通道2天'
+
+                if (macdsignal[-3] > macdsignal[-4]):
+                    tianshu = '_MACD上升通道3天'
+
+                    if (macdsignal[-4] > macdsignal[-5]):
+                        tianshu = '_MACD上升通道4天'
+
+        tableresult += type + tianshu
+
     if (macd[-1] > macd[-2]):
         jsonResult['MACD_K_' + type] = '[/]'
     if (macd[-1] < macd[-2]):
         jsonResult['MACD_K_' + type] = '[\]'
-
-
-
-    tableresult += '</tr></tbody></table></div></div>'
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
