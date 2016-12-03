@@ -91,6 +91,7 @@ else:
     all_code = df['02Code'].values
     all_title = df['04Hangye'].values
     all_time = df['01Time'].values
+
     execute(all_code, all_title,all_time)
     toDataFrame_param({}, 'Tiantian_All_Code_Json_Mongo_Email', collectionName2)
 
