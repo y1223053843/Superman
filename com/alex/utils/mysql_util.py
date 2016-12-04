@@ -1,90 +1,33 @@
 #encoding=utf-8
-from pymongo import MongoClient
-import time
-import pandas as pd
-import email_util
-import datetime
+import mysql.connector
 
 import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
+config={'host':'127.0.0.1',#默认127.0.0.1
+        'user':'root',
+        'password':'1qaz@WSX',
+        'port':3306 ,#默认即为3306
+        'database':'superman',
+        'charset':'utf8'#默认即为utf8
+        }
 
-# 获取数据库链接
-client = MongoClient('localhost', 27017)
-
-# 获取数据库
-db = client.get_database("Superman")
-
-'''
-###################################################################################################
-插入记录
-###################################################################################################
-'''
-def insertRecord(record):
-    #获取表
-    table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
-    table.insert(record)
-
-def insertRecord_param(record,collectionName):
-    #获取表
-    table = db.get_collection(collectionName)
-    table.insert(record)
-
-'''
-###################################################################################################
-转化成DataFrame文件
-###################################################################################################
-'''
-def toDataFrame(query,title):
-    #获取表
-    table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
-    cursor = table.find(query)
-    df = pd.DataFrame(list(cursor))
-    df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    return df
-
-def toDataFrame_param(query, title, collectionName):
-    #获取表
-    table = db.get_collection(collectionName)
-    cursor = table.find(query)
-    df = pd.DataFrame(list(cursor))
-    df.to_csv("./report/" + collectionName + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
-    return df
-
-def toDataFrame_param_for_tiantian(query, title, collectionName):
-    #获取表
-    table = db.get_collection(collectionName)
-    cursor = table.find(query)
-    listresult =list(cursor)
-
-    today = datetime.date.today()
-    t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
-
-    for i in t :
-        nday = datetime.timedelta(days= i)
-        curday = today - nday
-        print "report_tiantain_" + curday.strftime('%Y-%m-%d')
-        table = db.get_collection("report_tiantain_" + curday.strftime('%Y-%m-%d'))
-        cursor = table.find(query)
-        listtmp = list(cursor)
-        listresult = listresult + listtmp
-
-    df = pd.DataFrame(listresult)
-
-    df.to_csv("./report/" + collectionName + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
-    return df
+try:
+    cnn=mysql.connector.connect(**config)
+except mysql.connector.Error as e:
+    print('connect fails!{}'.format(e))
 
 
-#df = ts.get_hist_data('600848',ktype='D')
-#insertRecord(json.loads(df.to_json(orient='records')))
+def chaxun():
+    cursor=cnn.cursor()
 
-#json_str = { "course" : "chinese", "score" : 91, "name" : "wubiao"}
-#insertRecord(json_str)
-#print 'success'
-
-#print toDataFrame({})
-toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+    try:
+        sql_query='select id,code,name,type,tag from superman_jiankong where enable_status = %s'
+        cursor.execute(sql_query,(1,))
+        return cursor.fetchall()
+    except mysql.connector.Error as e:
+        print('query error!{}'.format(e))
+    finally:
+        cursor.close()
+        cnn.close()

@@ -6,6 +6,7 @@ import logging
 from pandas import DataFrame
 import time as time
 from com.alex.utils.mongo_util import *
+from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
 import common
@@ -24,11 +25,9 @@ collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.tim
 #################################
 '''
 def execute():
-    all_code_index  = ['000001','399001','399006','600547','000980','600570','150218','150212','150195', '150270', '150182','150170', '150308', '150193', '150197', '150172']
-    all_code_name  = ['上证指数','深证指数','创业板指','山东黄金','金马股份','恒生电子','新能源B','新能车B','互联网B', '白酒B', '军工B','恒生B', '体育B', '房产B', '有色B', '证券B']
-    all_code = DataFrame(all_code_name,index=all_code_index,columns=['name'])
-
-    for codeItem in all_code_index:
+    query_result = chaxun()
+    for row in query_result:
+        codeItem = row[1]
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
 
@@ -44,7 +43,7 @@ def execute():
             jsonDic = {}
             jsonDic['01Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02Code'] = '_' + codeItem
-            jsonDic['03Name'] = all_code.loc[codeItem,'name']
+            jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['05买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D

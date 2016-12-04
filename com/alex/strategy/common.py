@@ -16,10 +16,11 @@ def zhangdiefu(code):
      return "%.2f" % (((realTimeArray[0] - pre_close[0]) / pre_close[0]) * 100) + '%'
 
 def gupiaomingcheng(code):
+
+     if (code == '000001'):
+          return '上证指数'
      data_realTime = ts.get_realtime_quotes(code)
      nameArray = num.array(data_realTime['name'])
-
-
      return nameArray[0]
 
 #print zhangdiefu('150212')
