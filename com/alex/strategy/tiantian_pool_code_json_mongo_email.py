@@ -85,9 +85,7 @@ def download(url):
 def get_all_code():
     base_url = 'http://www.ourkp.com/bk'
     ht_string = download(base_url)
-    #print ht_string
     ht_doc = lxml.html.fromstring(ht_string, base_url)
-    #print ht_doc
     elms = ht_doc.xpath("//div[@class='hotT']/ul/li")
 
     result = ''
