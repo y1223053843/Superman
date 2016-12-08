@@ -39,7 +39,7 @@ def _format_addr(s):
 def template1(content):
     str_body_br = '<br>'
     str_start = '<html><body>'
-    str_body_0 = 'folder=/数据报告/量化精选/' + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+    str_body_0 = 'folder=/数据报告/量化跟踪/' + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
     str_body = str_body_0 + str_body_br + content
     str_end = '</body></html>'

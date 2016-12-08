@@ -43,6 +43,7 @@ def toDataFrame(query,title):
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendMailAttatch(email_util.template1(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     return df
 
 def toDataFrame_param(query, title, collectionName):
@@ -52,6 +53,7 @@ def toDataFrame_param(query, title, collectionName):
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + collectionName + ".csv")
     email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    email_util.sendMailAttatch(email_util.template1(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
 def toDataFrame_param_for_tiantian(query, title, collectionName):
