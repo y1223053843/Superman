@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 config={'host':'127.0.0.1',#默认127.0.0.1
-        'user':'root',
+        'user':'local_root',
         'password':'1qaz@WSX',
         'port':3306 ,#默认即为3306
         'database':'superman',
