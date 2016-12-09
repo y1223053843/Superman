@@ -23,7 +23,7 @@ def chaxun():
     cursor=cnn.cursor()
 
     try:
-        sql_query='select id,code,name,type,tag,mark from superman_jiankong where enable_status = %s'
+        sql_query='select id,code,name,type,tag,mark,bankuai_name from superman_jiankong where enable_status = %s'
         cursor.execute(sql_query,(1,))
         return cursor.fetchall()
     except mysql.connector.Error as e:

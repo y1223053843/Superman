@@ -46,6 +46,7 @@ def execute():
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['041备注信息'] = row[5]
+            jsonDic['042板块信息'] = row[6]
             jsonDic['05买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['07上升通道'] = result_D + ' ' + result_bl_D
