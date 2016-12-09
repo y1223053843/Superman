@@ -28,8 +28,10 @@ cf.read('../config/spark002_dev.conf')
 def execute():
     all_code = ts.get_stock_basics()
     all_code_index = all_code.index
+    count = 0
     for codeItem in all_code_index:
-        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
+        count = count + 1
+        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(count)
         try:
 
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
@@ -48,9 +50,10 @@ def execute():
             jsonDic['03涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['04所属行业'] = all_code.loc[codeItem,'industry']
             jsonDic['05PE'] = all_code.loc[codeItem,'pe']
-            jsonDic['06买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
+            jsonDic['061日买入信息'] =  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
-            jsonDic['08上升通道'] = result_D + ' ' + result_bl_D
+            jsonDic['08时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
+            jsonDic['09上升通道'] = result_D + ' ' + result_bl_D
             #jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             #jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             #jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
