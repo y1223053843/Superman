@@ -21,7 +21,6 @@ except mysql.connector.Error as e:
 
 def chaxun():
     cursor=cnn.cursor()
-
     try:
         sql_query='select id,code,name,type,tag,mark,bankuai_name from superman_jiankong where enable_status = %s'
         cursor.execute(sql_query,(1,))
