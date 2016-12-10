@@ -35,7 +35,7 @@ def execute(all_code_index, all_title, all_time):
 
     all_code_time = DataFrame(all_time,index=all_code_index,columns=['time'])
 
-    for codeItem in all_code_index:
+    for codeItem in all_code_drop['codeitem']:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
