@@ -45,7 +45,7 @@ def execute():
 
             jsonDic = {}
             jsonDic['00Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['01Code'] = '_' + codeItem
+            jsonDic['01Code'] = codeItem
             jsonDic['02Name'] = all_code.loc[codeItem,'name']
             jsonDic['03涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['04所属行业'] = all_code.loc[codeItem,'industry']
