@@ -31,7 +31,7 @@ collectionName2 = "report_tiantain_all_" + time.strftime('%Y-%m-%d', time.localt
 def execute(all_code_index, all_title, all_time):
 
     all_code = DataFrame({'codeitem':all_code_index,'hangye':all_title,'time':all_time},index=all_code_index)
-    all_code_drop = all_code.drop_duplicates()
+    all_code_drop = all_code.drop_duplicates('codeitem')
 
     all_code_time = DataFrame(all_time,index=all_code_index,columns=['time'])
 

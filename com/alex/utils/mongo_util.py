@@ -73,7 +73,7 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 
     today = datetime.date.today()
     #t = (1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15)
-    t = (1,2,3,4,5)
+    t = (1,2,3,4,5,6,7)
 
     for i in t :
         nday = datetime.timedelta(days= i)
