@@ -36,14 +36,21 @@ def insertRecord_param(record,collectionName):
 转化成DataFrame文件
 ###################################################################################################
 '''
-def toDataFrame(query,title):
+def toDataFrame(query_all, query_part, title_all, title_part):
     #获取表
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
-    cursor = table.find(query)
+    cursor = table.find(query_all)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendMailAttatch(email_util.template1(""), title, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendQQMailWithAttatch(email_util.template2(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendMailAttatch(email_util.template1(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+
+    cursor = table.find(query_part)
+    df = pd.DataFrame(list(cursor))
+    df.to_csv("./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendQQMailWithAttatch(email_util.template2(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    email_util.sendMailAttatch(email_util.template1(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+
     return df
 
 def toDataFrame_param(query, title, collectionName):

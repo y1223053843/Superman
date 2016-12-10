@@ -82,5 +82,5 @@ if (param == 1):
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
     execute()
-    toDataFrame({},'All_Code_JSON_Mongo')
+    toDataFrame({},{'061日买入信息':'D_MACD在底部V型翻转，买入 D_最低值下穿布林线下轨，买入'},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
