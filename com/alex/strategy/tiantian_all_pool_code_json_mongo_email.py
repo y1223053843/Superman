@@ -50,7 +50,7 @@ def execute(all_code_index, all_title, all_time):
             jsonDic = {}
             jsonDic['00实时Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['01原始Time'] = all_code_drop.loc[codeItem,'time']
-            #jsonDic['02Code'] = codeItem
+            jsonDic['02Code'] = codeItem
             jsonDic['02Code2'] = '_' + codeItem
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04所属行业'] = all_code_drop.loc[codeItem,'hangye']
