@@ -53,6 +53,11 @@ def toDataFrame(query_all, query_part, title_all, title_part):
 
     return df
 
+def remove(collectionName):
+    #获取表
+    table = db.get_collection(collectionName)
+    table.remove()
+
 def toDataFrame_param(query, title, collectionName):
     #获取表
     table = db.get_collection(collectionName)
