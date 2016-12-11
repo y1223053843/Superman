@@ -41,8 +41,8 @@ def MACD(codeCon, type):
         jsonResult['MACD_Z_' + type] = '[/]'
     if (macdhist[-1] < macdhist[-2] and macdhist[-2] < macdhist[-3]):
         jsonResult['MACD_Z_' + type] = '[\]'
-    if (macdhist[-1] > 0 and macdhist[-2] < 0):
-        jsonResult['MACD_Z_' + type] = '[X]'
+    #if (macdhist[-1] > 0 and macdhist[-2] < 0):
+    #    jsonResult['MACD_Z_' + type] = '[X]'
 
     if (macdsignal[-1] > macdsignal[-2]):
         jsonResult['MACD_M_' + type] = '[/]'
@@ -67,15 +67,23 @@ def MACD(codeCon, type):
                 if (macdsignal[-3] > macdsignal[-4]):
                     tianshu = 'D_MACD上升通道3天'
 
-                    if (macdsignal[-4] > macdsignal[-5]):
-                        tianshu = 'D_MACD上升通道4天'
-
         tableresult = tianshu
 
-    if (macd[-1] > macd[-2]):
-        jsonResult['MACD_K_' + type] = '[/]'
-    if (macd[-1] < macd[-2]):
-        jsonResult['MACD_K_' + type] = '[\]'
+    if (type == 'D'):
+        if (macd[-1] > macd[-2]):
+            jsonResult['10MACD快线_日' + type] = '上升1天'
+            if (macd[-2] > macd[-3]):
+                jsonResult['10MACD快线_日' + type] = '上升2天'
+                if (macd[-3] > macd[-4]):
+                    jsonResult['10MACD快线_日' + type] = '上升3天'
+
+        if (macd[-1] < macd[-2]):
+            jsonResult['10MACD快线_日' + type] = '下降中'
+    else:
+        if (macd[-1] > macd[-2]):
+            jsonResult['MACD_K_' + type] = '[/]'
+        if (macd[-1] < macd[-2]):
+            jsonResult['MACD_K_' + type] = '[\]'
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
