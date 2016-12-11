@@ -51,11 +51,12 @@ def execute(all_code_index, all_title, all_time):
             jsonDic['00实时Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['01原始Time'] = all_code_drop.loc[codeItem,'time']
             jsonDic['02Code'] = codeItem
-            jsonDic['02Code2'] = '_' + codeItem
+            #jsonDic['02Code2'] = '_' + codeItem
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04所属行业'] = all_code_drop.loc[codeItem,'hangye']
             jsonDic['05涨跌幅'] = common.zhangdiefu(codeItem)
-            jsonDic['06买入信息'] = mairuresult_60 + ' ' + mairuresult_D + ' ' + mairuresult_bl_60 + ' ' + mairuresult_bl_D
+            jsonDic['061日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
+            jsonDic['062时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
             jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['08上升通道'] = result_D + ' ' + result_bl_D
             #jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
