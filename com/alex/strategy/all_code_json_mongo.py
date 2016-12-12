@@ -8,6 +8,7 @@ import tushare as ts
 import time
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
+from com.alex.function.ma import *
 from com.alex.function.bbands import *
 import common
 
@@ -30,6 +31,8 @@ def execute():
     all_code_index = all_code.index
     count = 0
     for codeItem in all_code_index:
+        #if (count == 100):
+        #    break
         count = count + 1
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(count)
         try:
@@ -42,6 +45,7 @@ def execute():
             upperband_60, middleband_60, lowerband_60, jsonResult_b_60, result_bl_60,mairuresult_bl_60,maichuresult_bl_60 = BBANDS(codeItem, '60')
             upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_bl_D,mairuresult_bl_D,maichuresult_bl_D = BBANDS(codeItem, 'D')
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
+            real,tableresult_ma_d_20 = MA(codeItem, 'D', 20)
 
             jsonDic = {}
             jsonDic['00Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
@@ -53,6 +57,7 @@ def execute():
             jsonDic['061日买入信息'] =  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['07卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['08时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
+            jsonDic['081_20天线信息'] =  tableresult_ma_d_20
             jsonDic['09上升通道'] = result_D + ' ' + result_bl_D
             #jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             #jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
@@ -62,6 +67,7 @@ def execute():
             #jsonDic['验证_布林_60'] =  '%.3f' % middleband_60[-1] + '_' +  '%.3f' % middleband_60[-2] + '_' +  '%.3f' % middleband_60[-3]
             #jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             #jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
+            jsonDic['验证_20MA_D'] =  '%.3f' % real[-1]
 
             jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
                              + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
