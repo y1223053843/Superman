@@ -39,7 +39,7 @@ def insertRecord_param(record,collectionName):
 def toDataFrame(query_all, query_part, title_all, title_part):
     #获取表
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
-    cursor = table.find(query_all)
+    cursor = table.find(query_all).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     email_util.sendQQMailWithAttatch(email_util.template2(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
