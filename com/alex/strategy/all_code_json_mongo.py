@@ -6,6 +6,7 @@ import logging
 import ConfigParser
 import tushare as ts
 import time
+import numpy as num
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.ma import *
@@ -30,7 +31,10 @@ def execute():
     all_code = ts.get_stock_basics()
     all_code_index = all_code.index
     count = 0
-    for codeItem in all_code_index:
+    all_code_index_x = num.array(all_code_index)
+    all_code_index_x.append(['399006','399001','000001'])
+    #print all_code_index_x
+    for codeItem in all_code_index_x:
         #if (count == 100):
         #    break
         count = count + 1
