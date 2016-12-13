@@ -28,7 +28,7 @@ def MA(codeCon, type, zhouqi):
 
     tableresult = ''
     tianshu = ''
-    if (type == 'D'):
+    if (type == 'D' or type == '60'):
         if (real[-1] > real[-2]):
             tianshu =  '20_' + type + '上升通道1天'
 
@@ -38,10 +38,13 @@ def MA(codeCon, type, zhouqi):
                 if (real[-3] > real[-4]):
                     tianshu =  '20_' + type + '上升通道3天'
 
+                    if (real[-4] > real[-5]):
+                        tianshu =  '20_' + type + '上升通道4天'
+
         tableresult = tianshu
 
     return real,tableresult
 
-#real,tableresult = MA('399006', 'D', 20)
+#real,tableresult = MA('002576', 'D', 20)
 #print real,tableresult
 #print result
