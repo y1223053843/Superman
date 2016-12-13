@@ -42,13 +42,13 @@ def toDataFrame(query_all, query_part, title_all, title_part):
     cursor = table.find(query_all).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    #email_util.sendQQMailWithAttatch(email_util.template2(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     email_util.sendMailAttatch(email_util.template1(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
 
     cursor = table.find(query_part)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
+    #email_util.sendQQMailWithAttatch(email_util.template2(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     email_util.sendMailAttatch(email_util.template1(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
 
     return df
@@ -64,7 +64,7 @@ def toDataFrame_param(query, title, collectionName):
     cursor = table.find(query).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + collectionName + ".csv")
-    email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    #email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     email_util.sendMailAttatch(email_util.template1(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
