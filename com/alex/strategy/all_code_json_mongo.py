@@ -29,13 +29,10 @@ cf.read('../config/spark002_dev.conf')
 def execute():
     all_code = ts.get_stock_basics()
     all_code_index = all_code.index
-    all_code_index.append('000001')
-    all_code_index.append('399001')
-    all_code_index.append('399006')
     count = 0
     for codeItem in all_code_index:
-        if (count == 100):
-            break
+        #if (count == 100):
+        #    break
         count = count + 1
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(count)
         try:

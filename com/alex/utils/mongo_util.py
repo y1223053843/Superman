@@ -61,7 +61,7 @@ def remove(collectionName):
 def toDataFrame_param(query, title, collectionName):
     #获取表
     table = db.get_collection(collectionName)
-    cursor = table.find(query)
+    cursor = table.find(query).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + collectionName + ".csv")
     email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")

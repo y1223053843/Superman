@@ -48,7 +48,7 @@ def execute(all_code_index, all_title, all_time):
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
             jsonDic = {}
-            jsonDic['00实时Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            jsonDic['90_Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['01原始Time'] = all_code_drop.loc[codeItem,'time']
             jsonDic['02Code'] = codeItem
             #jsonDic['02Code2'] = '_' + codeItem
