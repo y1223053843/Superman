@@ -33,7 +33,6 @@ def execute():
     count = 0
     all_code_index_x = num.array(all_code_index)
     zhishu_code_index = num.array(['399006','399001','000001'])
-
     all = num.concatenate((all_code_index_x,zhishu_code_index))
     for codeItem in all:
         #if (count == 100):
