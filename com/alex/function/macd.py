@@ -87,6 +87,7 @@ def MACD(codeCon, type):
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
-#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('000001', 'D')
+#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('000001', '60')
+#print macd
 #print jsonResult
 #print result

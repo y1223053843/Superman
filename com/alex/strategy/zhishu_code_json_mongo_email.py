@@ -16,7 +16,7 @@ import common
 常量
 ##################################
 '''
-collectionName = "report_B_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_Zhishu_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
@@ -45,6 +45,7 @@ def execute():
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
+            print  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
             if (mairuresult_D != '' or mairuresult_bl_D != '' or mairuresult_60  != '' or mairuresult_bl_60 != ''):
