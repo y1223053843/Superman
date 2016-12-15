@@ -45,7 +45,7 @@ def execute():
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
-            print  mairuresult_D + ' ' + mairuresult_bl_D
+            #print  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
             if (mairuresult_D != '' or mairuresult_bl_D != '' or mairuresult_60  != '' or mairuresult_bl_60 != ''):
@@ -56,8 +56,8 @@ def execute():
                     time.sleep(3)
 
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
-
-            if (maichuresult_60 !='' or maichuresult_D !='' or maichuresult_bl_60 != '' or  maichuresult_bl_D!=''):
+            #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
+            if (maichuresult_60 != '' or maichuresult_D != '' or maichuresult_bl_60 != '' or  maichuresult_bl_D != ''):
                 j = 0
                 for j in [0,1,2,3,4] :
                     email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D, '卖出，果断果断再果断')
