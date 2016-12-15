@@ -91,7 +91,7 @@ else:
     df = toDataFrame_param_for_tiantian({}, 'Tiantian_All_Pool_Code_JSON_Mongo', collectionName)
     all_code = df['02Code'].values
     all_title = df['04Hangye'].values
-    all_time = df['01Time'].values
+    all_time = df['90_Time'].values
 
     remove(collectionName2)
     execute(all_code, all_title,all_time)
