@@ -5,6 +5,9 @@ import numpy as num
 
 
 def zhangdiefu(code):
+
+     if (code == '000001'):
+         code = 'sh'
      data_realTime = ts.get_realtime_quotes(code)
 
      realTimeArray = num.array(data_realTime['price'])
