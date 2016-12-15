@@ -60,17 +60,12 @@ def execute():
             jsonDic['02_卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['03_上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['04_Code'] = codeItem
-            jsonDic['05_Name'] = all_code.loc[codeItem,'name']
+            jsonDic['05_Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['06_涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['07_所属行业'] = all_code.loc[codeItem,'industry']
 
             jsonDic['90_Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['91_PE'] = all_code.loc[codeItem,'pe']
-
-
-
-
-
             #jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             #jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             #jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
