@@ -30,16 +30,16 @@ def MA(codeCon, type, zhouqi):
     tianshu = ''
     if (type == 'D' or type == '60'):
         if (real[-1] > real[-2]):
-            tianshu =  '20_' + type + '上升通道1天'
+            tianshu =  '20_' + type + '上升通道1 ' + type
 
             if (real[-2] > real[-3]):
-                tianshu =  '20_' + type + '上升通道2天'
+                tianshu =  '20_' + type + '上升通道2 ' + type
 
                 if (real[-3] > real[-4]):
-                    tianshu =  '20_' + type + '上升通道3天'
+                    tianshu =  '20_' + type + '上升通道3 ' + type
 
                     if (real[-4] > real[-5]):
-                        tianshu =  '20_' + type + '上升通道4天'
+                        tianshu =  '20_' + type + '上升通道4 ' + type
 
         tableresult = tianshu
 
