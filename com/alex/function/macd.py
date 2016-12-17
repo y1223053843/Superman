@@ -76,13 +76,15 @@ def MACD(codeCon, type):
                 jsonResult['10_MACD快线_' + type] = '上升2 ' + type
                 if (macd[-3] > macd[-4]):
                     jsonResult['10_MACD快线_' + type] = '上升3 ' + type
+                    if (macd[-4] > macd[-5]):
+                        jsonResult['10_MACD快线_' + type] = '上升4 ' + type
 
         if (macd[-1] < macd[-2]):
             jsonResult['10_MACD快线_' + type] = '下降1' + type
             if (macd[-2] < macd[-3]):
                 jsonResult['10_MACD快线_' + type] = '下降2 ' + type
                 if (macd[-3] < macd[-4]):
-                    jsonResult['10_MACD快线_' + type] = '下降2 ' + type
+                    jsonResult['10_MACD快线_' + type] = '下降3 ' + type
     else:
         if (macd[-1] > macd[-2]):
             jsonResult['MACD_K_' + type] = '[/]'
