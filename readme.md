@@ -14,8 +14,9 @@
 48 14 * * * cd /root/worksapce/Superman && sh ./2_b_code_json_mongo_email.sh
 
 #All code
-35 11 * * * cd /root/worksapce/Superman && sh ./1_all_code_json_mongo.sh
+0 11 * * * cd /root/worksapce/Superman && sh ./1_all_code_json_mongo.sh
 40 13 * * * cd /root/worksapce/Superman && sh ./1_all_code_json_mongo.sh
+25 14 * * * cd /root/worksapce/Superman && sh ./1_all_code_json_mongo.sh
 
 #Zhi shu
 58 13 * * * cd /root/worksapce/Superman && sh ./5_zhishu_code_json_mongo_email.sh
