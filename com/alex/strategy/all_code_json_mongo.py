@@ -100,9 +100,11 @@ def execute():
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
             real_D,tableresult_ma_d_20 = MA(codeItem, 'D', 20)
             real_60,tableresult_ma_60_20 = MA(codeItem, '60', 20)
+            #real_D_10,tableresult_ma__20 = MA(codeItem, 'D', 10)
 
             jsonDic = {}
             jsonDic['00_20天线信息'] =  tableresult_ma_d_20
+            #jsonDic['00_10天线信息'] =  tableresult_ma_d_20
             jsonDic['00_60分钟信息'] =  tableresult_ma_60_20
             jsonDic['01_日买入信息'] =  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['01_时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
