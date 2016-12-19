@@ -12,6 +12,7 @@ from com.alex.function.macd import *
 from com.alex.function.ma import *
 from com.alex.function.bbands import *
 import common
+import re
 
 '''
 ##################################
@@ -145,5 +146,7 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
     remove("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
     execute()
-    toDataFrame({},{'00_20天线信息' : {'$regex': '/^20/'},'01_日买入信息': {'$regex': '/买入/'}},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+    rexExp1 = re.compile('^20*')
+    rexExp2 = re.compile('^.*买入.*')
+    toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='

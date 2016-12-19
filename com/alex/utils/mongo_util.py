@@ -4,6 +4,7 @@ import time
 import pandas as pd
 import email_util
 import datetime
+import re
 
 import sys
 reload(sys)
@@ -107,3 +108,7 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 
 #print toDataFrame({})
 #toDataFrame_param_for_tiantian({}, 'B_Code_JSON_Mongo', "report_tiantain_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+
+#rexExp1 = re.compile('^20*')
+#rexExp2 = re.compile('^.*买入.*')
+#toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
