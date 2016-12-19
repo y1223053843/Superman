@@ -145,5 +145,5 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
     remove("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
     execute()
-    toDataFrame({},{'01_日买入信息':'D_MACD在底部V型翻转，买入 D_最低值下穿布林线下轨，买入'},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+    toDataFrame({},{'00_20天线信息' : {'$regex': '/^20/'},'01_日买入信息': {'$regex': '/买入/'}},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
