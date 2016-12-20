@@ -40,6 +40,7 @@ def insertRecord_param(record,collectionName):
 def toDataFrame(query_all, query_part, title_all, title_part):
     #获取表
     table = db.get_collection("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+    #table = db.get_collection("report_2016-12-19")
     cursor = table.find(query_all).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
@@ -111,4 +112,5 @@ def toDataFrame_param_for_tiantian(query, title, collectionName):
 
 #rexExp1 = re.compile('^20*')
 #rexExp2 = re.compile('^.*买入.*')
-#toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+#toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']}}]},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+#'toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
