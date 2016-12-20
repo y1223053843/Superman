@@ -47,7 +47,7 @@ def toDataFrame(query_all, query_part, title_all, title_part):
     #email_util.sendQQMailWithAttatch(email_util.template2(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     email_util.sendMailAttatch(email_util.template1(""), title_all, "./report/" + "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
 
-    cursor = table.find(query_part)
+    cursor = table.find(query_part).sort("90_Time",-1)
     df = pd.DataFrame(list(cursor))
     df.to_csv("./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
     #email_util.sendQQMailWithAttatch(email_util.template2(""), title_part, "./report/" + "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv", "report_part_" + time.strftime('%Y-%m-%d', time.localtime(time.time())) + ".csv")
