@@ -27,7 +27,7 @@ def gupiaomingcheng(code):
      return nameArray[0]
 
 def shifouchiyou(code) :
-     chiyou_code_index = num.array(['399006', '399001', '000001'])
+     chiyou_code_index = num.array(['399006', '399001'])
      if (chiyou_code_index.__contains__(code)):
           return 'yes'
 
