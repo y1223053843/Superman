@@ -61,6 +61,7 @@ def execute():
             jsonDic['02_卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['03_上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['04_Code'] = codeItem
+            jsonDic['04_是否持有'] = common.shifouchiyou(codeItem)
             jsonDic['05_Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['06_涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['07_所属行业'] = all_code.loc[codeItem,'industry']

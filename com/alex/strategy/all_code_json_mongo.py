@@ -60,6 +60,7 @@ def execute():
             jsonDic['02_卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['03_上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['04_Code'] = codeItem
+            jsonDic['04_是否持有'] = common.shifouchiyou(codeItem)
             jsonDic['05_Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['06_涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['07_所属行业'] = all_code.loc[codeItem,'industry']
@@ -148,6 +149,6 @@ else:
     execute()
     rexExp1 = re.compile('^20*')
     rexExp2 = re.compile('^.*买入.*')
-    toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业':''}]},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+    toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2, '04_是否持有':'yes'}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业':''}]},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     #toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='

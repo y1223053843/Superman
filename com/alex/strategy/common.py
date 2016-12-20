@@ -26,5 +26,11 @@ def gupiaomingcheng(code):
      nameArray = num.array(data_realTime['name'])
      return nameArray[0]
 
+def shifouchiyou(code) :
+     chiyou_code_index = num.array(['399006', '399001', '000001'])
+     if (chiyou_code_index.__contains__(code)):
+          return 'yes'
+
 #print zhangdiefu('150212')
 #print gupiaomingcheng('150212')
+#print shifouchiyou('150212')
