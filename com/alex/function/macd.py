@@ -15,13 +15,18 @@ sys.setdefaultencoding('utf-8')
 参数2 type 类型
 ###############################################################################
 '''
-def MACD(codeCon, type):
-
+def MACD(codeCon, type, **values):
     data_history = ''
-    if (codeCon == '000001'):
-        data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+    if (values.get('end') == None):
+        if (codeCon == '000001'):
+            data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+        else:
+            data_history = ts.get_k_data(codeCon, ktype = type)
     else:
-        data_history = ts.get_k_data(codeCon, ktype = type)
+        if (codeCon == '000001'):
+            data_history = ts.get_k_data(codeCon, ktype = type,index='true', end=values.get('end'))
+        else:
+            data_history = ts.get_k_data(codeCon, ktype = type, end=values.get('end'))
 
     closeArray = num.array(data_history['close'])
 
@@ -34,13 +39,25 @@ def MACD(codeCon, type):
     jsonResult = {}
     if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
         jsonResult['MACD_Z_' + type] = '[V]'
-    if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
-        jsonResult['MACD_Z_' + type] = '[/\]'
-        maichuresult += type + '_MACD顶部八字翻转，卖出'
+    #if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
+    #    jsonResult['MACD_Z_' + type] = '[/\]'
+    #    maichuresult += type + '_MACD顶部八字翻转，卖出'
     if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
         jsonResult['MACD_Z_' + type] = '[/]'
-    if (macdhist[-1] < macdhist[-2] and macdhist[-2] < macdhist[-3]):
-        jsonResult['MACD_Z_' + type] = '[\]'
+
+    if (type == 'D' or type == '60'):
+        if (macdhist[-1] < macdhist[-2] ):
+            jsonResult['10_MACD柱体_' + type] = '下降1 ' + type
+            maichuresult = type + '_MACD柱体下降1_'+ type + '，卖出'
+            if (macdhist[-2] < macdhist[-3] ):
+                jsonResult['10_MACD柱体_' + type] = '下降2 ' + type
+                maichuresult = type + '_MACD柱体下降2_'+ type + '，卖出'
+                if (macdhist[-3] < macdhist[-4] ):
+                    jsonResult['10_MACD柱体_' + type] = '下降3 ' + type
+                    maichuresult = type + '_MACD柱体下降3_'+ type + '，卖出'
+                    if (macdhist[-4] < macdhist[-5] ):
+                        jsonResult['10_MACD柱体_' + type] = '下降4 ' + type
+                        maichuresult = type + '_MACD柱体下降4_'+ type + '，卖出'
     #if (macdhist[-1] > 0 and macdhist[-2] < 0):
     #    jsonResult['MACD_Z_' + type] = '[X]'
 
@@ -95,7 +112,8 @@ def MACD(codeCon, type):
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
-#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('000001', '60')
+#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D')
+#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D', end = '2016-12-15')
 #print macd
 #print jsonResult
 #print result
