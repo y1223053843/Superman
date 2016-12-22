@@ -10,6 +10,7 @@ import numpy as num
 from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.ma import *
+from com.alex.function.liang import *
 from com.alex.function.bbands import *
 import common
 
@@ -28,9 +29,9 @@ cf.read('../config/spark002_dev.conf')
 #################################
 '''
 def execute():
-    time.sleep(10)
+    time.sleep(1)
     all_code = ts.get_stock_basics()
-    all_code_index = all_code[1700:2400].index
+    all_code_index = all_code[1350:1950].index
     count = 0
     all_code_index_x = num.array(all_code_index)
     for codeItem in all_code_index_x:
@@ -49,16 +50,20 @@ def execute():
             upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_bl_D,mairuresult_bl_D,maichuresult_bl_D = BBANDS(codeItem, 'D')
             #upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
             real_D,tableresult_ma_d_20 = MA(codeItem, 'D', 20)
+            real_D_10,tableresult_ma_d_10 = MA(codeItem, 'D', 10)
             real_60,tableresult_ma_60_20 = MA(codeItem, '60', 20)
-            #real_D_10,tableresult_ma_d_10 = MA(codeItem, 'D', 10)
+            liangbi_d = LIANG(codeItem, 'D')
+            liangbi_60 = LIANG(codeItem, '60')
 
             jsonDic = {}
             jsonDic['00_20天线信息'] =  tableresult_ma_d_20
-            #jsonDic['00_10天线信息'] =  tableresult_ma_d_10
+            jsonDic['00_10天线信息'] =  tableresult_ma_d_10
             jsonDic['00_60分钟信息'] =  tableresult_ma_60_20
             jsonDic['01_日买入信息'] =  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['01_时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
             jsonDic['02_卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
+            jsonDic['03_量能_日'] = liangbi_d
+            jsonDic['03_量能_时'] = liangbi_60
             jsonDic['03_上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['04_Code'] = codeItem
             jsonDic['04_是否持有'] = common.shifouchiyou(codeItem)
