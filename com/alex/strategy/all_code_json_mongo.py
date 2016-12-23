@@ -162,9 +162,9 @@ else:
     rexExp1 = re.compile('^20*')
     rexExp2 = re.compile('^.*买入.*')
     rexExp3 = re.compile('^[\s]*$')
-    toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2, '02_卖出信息':rexExp3}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
+    toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2, '02_卖出信息':rexExp3}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]},'All_Code_JSON_Mongo','策略1：:20天上升，888 signal')
     # 策略
-    toDataFrame_param({'$or':[{'00_10天线信息' : rexExp1, '00_20天线信息': rexExp1, '00_60分钟信息':rexExp1, '02_卖出信息':rexExp3}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]}, '策略5、10、20均线齐头并进',"report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+    toDataFrame_param({'$or':[{'00_10天线信息' : rexExp1, '00_20天线信息': rexExp1, '00_60分钟信息':rexExp1, '02_卖出信息':rexExp3}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]}, '策略2：5、10、20天齐头并进',"report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
 
     #toDataFrame({},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
