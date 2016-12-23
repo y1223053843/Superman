@@ -71,15 +71,16 @@ def MACD(codeCon, type, **values):
             jsonResult['MACD底部V型翻转_' + type] = 'Y'
             mairuresult += type + '_MACD在底部V型翻转，买入'
 
-        tmp = ''
-        if (macdhist[-2] > macdhist[-3]):
-            tmp = type + '_MACD柱体上升2_'+ type + '，买入'
-            if (macdhist[-3] > macdhist[-4]):
-                tmp = type + '_MACD柱体上升3_'+ type + '，买入'
-                #if (macdhist[-4] > macdhist[-5]):
-                #    tmp = type + '_MACD柱体上升4_'+ type + '，买入'
+        if (codeCon == '000001' or codeCon == '399006' or codeCon =='399001'):
+            tmp = ''
+            if (macdhist[-2] > macdhist[-3]):
+                tmp = type + '_MACD柱体上升2_'+ type + '，买入'
+                if (macdhist[-3] > macdhist[-4]):
+                    tmp = type + '_MACD柱体上升3_'+ type + '，买入'
+                    if (macdhist[-4] > macdhist[-5]):
+                        tmp = type + '_MACD柱体上升4_'+ type + '，买入'
 
-        mairuresult += tmp
+            mairuresult += tmp
 
     tianshu = ''
     if (type == 'D'):
