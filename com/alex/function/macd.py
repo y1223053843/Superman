@@ -37,13 +37,13 @@ def MACD(codeCon, type, **values):
     mairuresult = ''
     maichuresult = ''
     jsonResult = {}
-    if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
-        jsonResult['MACD_Z_' + type] = '[V]'
+    #if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
+    #    jsonResult['MACD_Z_' + type] = '[V]'
     #if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
     #    jsonResult['MACD_Z_' + type] = '[/\]'
     #    maichuresult += type + '_MACD顶部八字翻转，卖出'
-    if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
-        jsonResult['MACD_Z_' + type] = '[/]'
+    #if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
+    #    jsonResult['MACD_Z_' + type] = '[/]'
 
 
     if (type == 'D' or type == '60'):
@@ -60,10 +60,10 @@ def MACD(codeCon, type, **values):
                         jsonResult['10_MACD柱体_' + type] = '下降4 ' + type
                         maichuresult = type + '_MACD柱体下降4_'+ type + '，卖出'
 
-    if (macdsignal[-1] > macdsignal[-2]):
-        jsonResult['MACD_M_' + type] = '[/]'
-    if (macdsignal[-1] < macdsignal[-2]):
-        jsonResult['MACD_M_' + type] = '[\]'
+    #if (macdsignal[-1] > macdsignal[-2]):
+    #    jsonResult['MACD_M_' + type] = '[/]'
+    #if (macdsignal[-1] < macdsignal[-2]):
+    #    jsonResult['MACD_M_' + type] = '[\]'
 
     if (macdsignal[-1] < 0):
         jsonResult['MACD慢线小于0_' + type] = 'Y'
@@ -83,7 +83,7 @@ def MACD(codeCon, type, **values):
             mairuresult += tmp
 
     tianshu = ''
-    if (type == 'D'):
+    if (type == 'X'):
         if (macdsignal[-1] > macdsignal[-2]):
             tianshu = 'D_MACD上升通道1天'
 

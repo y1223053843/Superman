@@ -15,12 +15,18 @@ sys.setdefaultencoding('utf-8')
 参数2 type 类型
 ###############################################################################
 '''
-def BBANDS(codeCon, type):
+def BBANDS(codeCon, type, **values):
     data_history = ''
-    if (codeCon == '000001'):
-        data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+    if (values.get('end') == None):
+        if (codeCon == '000001'):
+            data_history = ts.get_k_data(codeCon, ktype = type,index='true')
+        else:
+            data_history = ts.get_k_data(codeCon, ktype = type)
     else:
-        data_history = ts.get_k_data(codeCon, ktype = type)
+        if (codeCon == '000001'):
+            data_history = ts.get_k_data(codeCon, ktype = type,index='true', end=values.get('end'))
+        else:
+            data_history = ts.get_k_data(codeCon, ktype = type, end=values.get('end'))
 
     closeArray = num.array(data_history['close'])
     highArray = num.array(data_history['high'])
