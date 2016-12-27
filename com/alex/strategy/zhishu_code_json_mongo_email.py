@@ -48,7 +48,7 @@ def execute():
             #print  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
-            if (mairuresult_D != '' or mairuresult_bl_D != '' or mairuresult_60  != '' or mairuresult_bl_60 != ''):
+            if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
                     email_util.sendMail(codeItem + '买入信号出现：' +  mairuresult_60 + ' ' + mairuresult_bl_60, '买入，谨慎谨慎再谨慎')
@@ -57,7 +57,7 @@ def execute():
 
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
-            if (maichuresult_60 != '' or maichuresult_D != '' or maichuresult_bl_60 != '' or  maichuresult_bl_D != ''):
+            if (maichuresult_60 != '' or  maichuresult_bl_60 != ''):
                 j = 0
                 for j in [0] :
                     email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_bl_60, '卖出，果断果断再果断')
