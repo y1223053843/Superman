@@ -25,7 +25,7 @@ collectionName = "report_Zhishu_" + time.strftime('%Y-%m-%d', time.localtime(tim
 #################################
 '''
 def execute():
-    query_result = ['000001','399006','600547']
+    query_result = ['000001']
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
@@ -50,8 +50,8 @@ def execute():
 
             if (mairuresult_D != '' or mairuresult_bl_D != '' or mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
-                for i in [0,1,2,3,4] :
-                    email_util.sendMail(codeItem + '买入信号出现：' + mairuresult_D + ' ' + mairuresult_bl_D +  ' ' +  mairuresult_60 + ' ' + mairuresult_bl_60, '买入，谨慎谨慎再谨慎')
+                for i in [0] :
+                    email_util.sendMail(codeItem + '买入信号出现：' +  mairuresult_60 + ' ' + mairuresult_bl_60, '买入，谨慎谨慎再谨慎')
                     i = i + 1
                     time.sleep(3)
 
@@ -59,8 +59,8 @@ def execute():
             #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             if (maichuresult_60 != '' or maichuresult_D != '' or maichuresult_bl_60 != '' or  maichuresult_bl_D != ''):
                 j = 0
-                for j in [0,1,2,3,4] :
-                    email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D, '卖出，果断果断再果断')
+                for j in [0] :
+                    email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_bl_60, '卖出，果断果断再果断')
                     j = j + 1
                     time.sleep(3)
 
