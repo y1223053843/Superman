@@ -45,17 +45,17 @@ def BBANDS(codeCon, type, **values):
     #if (middleband[-1] > middleband[-2] and middleband[-3] > middleband[-2]):
     #    jsonResult['布林_M_' + type] = '[V]'
 
-    if (middleband[-1] < middleband[-2] and middleband[-3] < middleband[-2]):
-        jsonResult['布林_M_' + type] = '[/\]'
+    #if (middleband[-1] < middleband[-2] and middleband[-3] < middleband[-2]):
+    #    jsonResult['布林_M_' + type] = '[/\]'
 
     #if (middleband[-1] > middleband[-2] and middleband[-2] > middleband[-3]):
     #    jsonResult['布林_M_' + type] = '[/]'
 
-    if (middleband[-1] < middleband[-2] and middleband[-2] < middleband[-3]):
-        jsonResult['布林_M_' + type] = '[\]'
+    #if (middleband[-1] < middleband[-2] and middleband[-2] < middleband[-3]):
+    #    jsonResult['布林_M_' + type] = '[\]'
 
     tianshu = ''
-    if (type == 'D'):
+    if (type == 'X'):
         if (middleband[-1] > middleband[-2]):
             tianshu = 'D_布林上升通道1天'
 

@@ -51,6 +51,6 @@ def MA(codeCon, type, zhouqi, **values):
 
     return real,tableresult
 
-#real,tableresult = MA('002576', 'D', 20)
+#real,tableresult = MA('600156', 'D', 10)
 #print real,tableresult
 #print result
