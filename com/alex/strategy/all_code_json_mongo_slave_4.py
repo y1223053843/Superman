@@ -44,11 +44,11 @@ def execute():
             #macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
             macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60,mairuresult_60,maichuresult_60  = MACD(codeItem,  '60')
             macd_D,macdsignal_D,macdhist_D,jsonResult_D,result_D,mairuresult_D,maichuresult_D  = MACD(codeItem,  'D')
-            #macd_W,macdsignal_W,macdhist_W,jsonResult_W,result_W,mairuresult_W,maichuresult_W  = MACD(codeItem,  'W')
+            macd_W,macdsignal_W,macdhist_W,jsonResult_W,result_W,mairuresult_W,maichuresult_W  = MACD(codeItem,  'W')
             #upperband_30, middleband_30, lowerband_30, jsonResult_b_30, result_bl_30,mairuresult_bl_30,maichuresult_bl_30 = BBANDS(codeItem, '30')
             upperband_60, middleband_60, lowerband_60, jsonResult_b_60, result_bl_60,mairuresult_bl_60,maichuresult_bl_60 = BBANDS(codeItem, '60')
             upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_bl_D,mairuresult_bl_D,maichuresult_bl_D = BBANDS(codeItem, 'D')
-            #upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
+            upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
             real_D,tableresult_ma_d_20 = MA(codeItem, 'D', 20)
             real_D_10,tableresult_ma_d_10 = MA(codeItem, 'D', 10)
             real_60,tableresult_ma_60_20 = MA(codeItem, '60', 20)
@@ -61,6 +61,7 @@ def execute():
             jsonDic['00_60分钟信息'] =  tableresult_ma_60_20
             jsonDic['01_日买入信息'] =  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['01_时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
+            jsonDic['01_周买入信息'] =  mairuresult_W + ' ' + mairuresult_bl_W
             jsonDic['02_卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             jsonDic['03_量能_日'] = liangbi_d
             jsonDic['03_量能_时'] = liangbi_60
