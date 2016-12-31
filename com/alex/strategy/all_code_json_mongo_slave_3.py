@@ -87,9 +87,9 @@ def execute():
             #jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
             #                 + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
             #                 + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
-            jsonParam = dict(jsonResult_60.items() + jsonResult_D.items()
+            jsonParam = dict(jsonResult_60.items() + jsonResult_D.items() + jsonResult_W.items()
                              + jsonResult_b_60.items()
-                             + jsonResult_b_D.items() + jsonDic.items())
+                             + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
             insertRecord(jsonParam)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             print e
