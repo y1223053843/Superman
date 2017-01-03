@@ -166,8 +166,10 @@ else:
     rexExp3 = re.compile('^[\s]*$')
     # 策略1
     toDataFrame({},{'$or':[{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2, '02_卖出信息':rexExp3,'MACD_Z_W':'[V]'},{'00_20天线信息' : rexExp1, '01_日买入信息': rexExp2, '02_卖出信息':rexExp3,'MACD_Z_W':'[/]'}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]},'All_Code_JSON_Mongo','S1：:20 days upper，888 signal')
+
     # 策略2
-    toDataFrame({},{'$or':[{'MACD_Z_W':'[V]'},{'MACD_Z_W':'[/]'}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]},'All_Code_JSON_Mongo','S2：:week upper，888 signal')
+    toDataFrame_param({'$or':[{'MACD_Z_W':'[V]'},{'MACD_Z_W':'[/]'}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]}, 'S2：week upper',"report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+
     # 策略3
     toDataFrame_param({'$or':[{'00_10天线信息' : rexExp1, '00_20天线信息': rexExp1, '00_60分钟信息':rexExp1, '02_卖出信息':rexExp3}, {'04_Code':{'$in':[u'000001',u'399001',u'399006']},'07_所属行业': {'$exists':False}},{'04_是否持有' : 'yes'}]}, 'S3：5、10、20 days upper',"report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
 
