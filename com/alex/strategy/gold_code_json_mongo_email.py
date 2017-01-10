@@ -97,5 +97,5 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email Start====='
     remove(collectionName)
     execute()
-    toDataFrame_param({}, 'Zhishu_Code_JSON_Mongo', collectionName)
+    toDataFrame_param({}, 'Gold_Code_JSON_Mongo', collectionName)
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email End====='
