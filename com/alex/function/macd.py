@@ -64,7 +64,7 @@ def MACD(codeCon, type, **values):
     #    jsonResult['MACD_M_' + type] = '[/]'
     #if (macdsignal[-1] < macdsignal[-2]):
     #    jsonResult['MACD_M_' + type] = '[\]'
-    if (codeCon == '000001'):
+    if (codeCon == '000001' or codeCon == '600547'):
         jsonResult['MACD慢线小于0_' + type] = 'Y'
         if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
             jsonResult['MACD底部V型翻转_' + type] = 'Y'
