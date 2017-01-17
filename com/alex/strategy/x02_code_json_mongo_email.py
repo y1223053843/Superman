@@ -16,7 +16,7 @@ import common
 常量
 ##################################
 '''
-collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_002230_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
