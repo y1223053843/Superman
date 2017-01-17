@@ -70,7 +70,8 @@ def MACD(codeCon, type, **values):
             jsonResult['MACD底部V型翻转_' + type] = 'Y'
             mairuresult += type + '_MACD在底部V型翻转，买入'
 
-        if (macdhist[-1] > macdhist[-2] and (codeCon == '000001' or codeCon == '399006' or codeCon =='399001' or codeCon =='600547')):
+        #if (macdhist[-1] > macdhist[-2] and (codeCon == '000001' or codeCon == '399006' or codeCon =='399001' or codeCon =='600547')):
+        if (macdhist[-1] > macdhist[-2]):
             tmp = ''
             if (macdhist[-2] > macdhist[-3]):
                 tmp = type + '_MACD柱体上升2_'+ type + '，买入'
