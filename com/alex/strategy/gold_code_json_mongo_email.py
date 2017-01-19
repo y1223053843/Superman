@@ -94,8 +94,8 @@ param = sys.argv[0]
 if (param == 1):
     print 'param:' + param
 else:
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email Start====='
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
     remove(collectionName)
     execute()
-    toDataFrame_param({}, 'Gold_Code_JSON_Mongo', collectionName)
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email End====='
+    toDataFrame_param({}, 'My_Code_JSON_Mongo#【长期关注】山东黄金#', collectionName)
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
