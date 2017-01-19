@@ -72,7 +72,7 @@ def sendMail(content,title):
     msg = MIMEText(content, 'html', 'utf-8')
     msg['From'] = _format_addr(u'CoolSOLO <%s>' % from_addr)
     msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-    msg['Subject'] = Header(u'=====' + title, 'utf-8').encode()
+    msg['Subject'] = Header(title, 'utf-8').encode()
 
     try:
         # 设置邮件发送服务器
@@ -108,7 +108,7 @@ def sendQQMailWithAttatch(content,title,file_path, file_name):
     msg = MIMEMultipart()
     msg['From'] = _format_addr(u'CoolSOLO <%s>' % from_addr)
     msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-    msg['Subject'] = Header(u'=====' + title, 'utf-8').encode()
+    msg['Subject'] = Header(title, 'utf-8').encode()
 
     # 邮件正文是MIMEText:
     msg.attach(MIMEText(content, 'html', 'utf-8'))
@@ -163,7 +163,7 @@ def sendMailWiz(content, title):
     msg = MIMEText(content, 'html', 'utf-8')
     msg['From'] = _format_addr(u'CoolSOLO <%s>' % from_addr)
     msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-    msg['Subject'] = Header(u'=====' + title, 'utf-8').encode()
+    msg['Subject'] = Header(title, 'utf-8').encode()
 
     # 设置邮件发送服务器
     server = smtplib.SMTP(smtp_server, 25)
@@ -192,7 +192,7 @@ def sendMailAttatch(content, title, file_path, file_name):
     msg = MIMEMultipart()
     msg['From'] = _format_addr(u'Python爱好者 <%s>' % from_addr)
     msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-    msg['Subject'] = Header(u'=====' + title, 'utf-8').encode()
+    msg['Subject'] = Header(title, 'utf-8').encode()
 
     # 邮件正文是MIMEText:
     msg.attach(MIMEText(content, 'html', 'utf-8'))
