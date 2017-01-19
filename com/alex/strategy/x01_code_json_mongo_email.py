@@ -26,6 +26,7 @@ collectionName = "report_000980_" + time.strftime('%Y-%m-%d', time.localtime(tim
 '''
 def execute():
     query_result = ['000980']
+    xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
@@ -51,6 +52,7 @@ def execute():
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
+                    xinhao = xinhao + codeItem + '买入信号出现：' +  mairuresult_D + ' ' + mairuresult_60 + ' ' + mairuresult_bl_60 + ' '
                     email_util.sendMail(codeItem + '买入信号出现：' +  mairuresult_60 + ' ' + mairuresult_bl_60, '买入，谨慎谨慎再谨慎')
                     i = i + 1
                     time.sleep(3)
@@ -60,6 +62,7 @@ def execute():
             if (maichuresult_60 != '' or  maichuresult_bl_60 != ''):
                 j = 0
                 for j in [0] :
+                    xinhao = xinhao + codeItem + '卖出信号出现：' +  maichuresult_D + ' ' + maichuresult_60 + ' ' + maichuresult_bl_60 + ' '
                     email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_bl_60, '卖出，果断果断再果断')
                     j = j + 1
                     time.sleep(3)
@@ -84,18 +87,21 @@ def execute():
             logging.error("error:" + codeItem)
             print e
 
+    return xinhao
+
+
 '''
-###############################################################################
+########################
 主运行函数main
-###############################################################################
+########################
 '''
 
 param = sys.argv[0]
 if (param == 1):
     print 'param:' + param
 else:
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email Start====='
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
     remove(collectionName)
-    execute()
-    #toDataFrame_param({}, 'Gold_Code_JSON_Mongo', collectionName)
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====gold_code_json_mongo_email End====='
+    content = execute()
+    toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo#【长期关注】金马股份#',content, collectionName)
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
