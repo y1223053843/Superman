@@ -70,6 +70,16 @@ def toDataFrame_param(query, title, collectionName):
     email_util.sendMailAttatch(email_util.template1(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
     return df
 
+def toDataFrame_param_content(query, title, content, collectionName):
+    #获取表
+    table = db.get_collection(collectionName)
+    cursor = table.find(query).sort("90_Time",-1)
+    df = pd.DataFrame(list(cursor))
+    df.to_csv("./report/" + collectionName + ".csv")
+    #email_util.sendQQMailWithAttatch(email_util.template2(""), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    email_util.sendMailAttatch(email_util.template1(content), title, "./report/" + collectionName + ".csv", collectionName + ".csv")
+    return df
+
 def toDataFrame_param_for_tiantian(query, title, collectionName):
     #获取表
     table = db.get_collection(collectionName)
