@@ -102,5 +102,5 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====zhishu_code_json_mongo_email Start====='
     remove(collectionName)
     content = execute()
-    toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo#【长期关注】上证指数#',content, collectionName)
+    toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '#【长期关注】上证指数#',content, collectionName)
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====zhishu_code_json_mongo_email End====='
