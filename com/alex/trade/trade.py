@@ -44,7 +44,7 @@ def post(url, data,cookie):
 from splinter import Browser
 
 browser = Browser('firefox')
-browser.visit('https://www.xrcj.com/front/cooperation/cooperation.html')
+browser.visit(cf.get("URL", "url1"))
 browser.click_link_by_partial_text('登录')
 browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
 browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
