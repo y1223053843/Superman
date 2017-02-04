@@ -3,17 +3,19 @@
 import sys
 import time
 sys.path.append('/root/worksapce/Superman')
-
 import urllib2
 import urllib
 import cookielib
 import ConfigParser
+from splinter import Browser
 
 #读取配置配置文件
 cf = ConfigParser.RawConfigParser()
 cf.read("../config/config.conf")
 
-
+'''
+发送post请求
+'''
 def post(url, data,cookie):
     req = urllib2.Request(url)
     req.add_header('Accept','application/json, text/javascript, */*; q=0.01')
@@ -25,6 +27,8 @@ def post(url, data,cookie):
     req.add_header('Host','www.xrcj.com')
     req.add_header('Origin','https://www.xrcj.com')
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.113 Safari/537.36')
+
+    #cookie
     req.add_header('Cookie','SESSION=' + cookie)
     req.add_header('Pragma','no-cache')
     req.add_header('X-Requested-With','XMLHttpRequest')
@@ -40,38 +44,72 @@ def post(url, data,cookie):
     print 'message:' + response.msg
     return response.read()
 
+'''
+买入
+'''
+def buy(code, shipan):
 
-from splinter import Browser
+    browser = Browser('firefox')
+    browser.visit(cf.get("URL", "url1"))
+    browser.click_link_by_partial_text('登录')
+    browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
+    browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
+    browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
+    url = 'https://www.xrcj.com/api/trading-sec/create-stock'
+    values = {
+    'subjectId':code,
+    'createMode':'1',
+    'strategyId':'S0101-00-1000',
+    'strategyType':shipan,
+    'marginRate':'10',
+    'openAsset':'1',
+    'openPrice':'9.01',
+    'openEntrustCmd':'1',
+    'stopSwitch':'0',
+    'marginStopLossRate':'',
+    'marginStopProfitRate':'',
+    'sourceDealingNo':''
+    }
 
-browser = Browser('firefox')
-browser.visit(cf.get("URL", "url1"))
-browser.click_link_by_partial_text('登录')
-browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
-browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
-browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
+    print browser.cookies.all()['SESSION']
+    print post(url, values,browser.cookies.all()['SESSION'])
+
+    time.sleep(10)
+    browser.quit()
+
+'''
+卖出
+'''
+def sell(code):
+    browser = Browser('firefox')
+    browser.visit(cf.get("URL", "url1"))
+    browser.click_link_by_partial_text('登录')
+    browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
+    browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
+    browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
+    url = 'https://www.xrcj.com/api/trading-sec/create-stock'
+    values = {
+    'subjectId':code,
+    'createMode':'1',
+    'strategyId':'S0101-00-1000',
+    'strategyType':'S',
+    'marginRate':'10',
+    'openAsset':'1',
+    'openPrice':'9.01',
+    'openEntrustCmd':'1',
+    'stopSwitch':'0',
+    'marginStopLossRate':'',
+    'marginStopProfitRate':'',
+    'sourceDealingNo':''
+    }
+
+    print browser.cookies.all()['SESSION']
+    post(url, values,browser.cookies.all()['SESSION'])
+    time.sleep(10)
+    browser.quit()
+
+buy('SH600547','S')
 
 
-url = 'https://www.xrcj.com/api/trading-sec/create-stock'
-values = {
-'subjectId':'SH600516',
-'createMode':'1',
-'strategyId':'S0101-00-1000',
-'strategyType':'S',
-'marginRate':'10',
-'openAsset':'1',
-'openPrice':'9.01',
-'openEntrustCmd':'1',
-'stopSwitch':'0',
-'marginStopLossRate':'',
-'marginStopProfitRate':'',
-'sourceDealingNo':''
-}
-
-print browser.cookies.all()['SESSION']
-print post(url, values,browser.cookies.all()['SESSION'])
-
-
-time.sleep(10)
-browser.quit()
 
 
