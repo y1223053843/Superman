@@ -77,7 +77,7 @@ def buy(code, shipan):
     if (response.code == 200):
         print '买入' + code + '成功。'
 
-    time.sleep(5)
+    time.sleep(3)
     browser.quit()
 
 '''
@@ -111,7 +111,7 @@ def sell(code):
     time.sleep(10)
     browser.quit()
 
-buy('SH600547','S')
+#buy('SH600547','S')
 
 
 
