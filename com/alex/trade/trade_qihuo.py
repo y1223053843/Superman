@@ -32,7 +32,6 @@ def post(url, data,cookie):
     data = urllib.urlencode(data)
     #enable cookie
     cj=cookielib.CookieJar()
-    #cj.set_cookie(cookie)
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
     response = opener.open(req, data)
     print response.code
@@ -80,5 +79,3 @@ def buy(code, shipan):
     browser.quit()
 
 buy('au1706','S')
-
-
