@@ -42,7 +42,7 @@ def post(url, data,cookie):
     response = opener.open(req, data)
     print response.code
     print 'message:' + response.msg
-    return response.read()
+    return response
 
 '''
 买入
@@ -72,9 +72,12 @@ def buy(code, shipan):
     }
 
     print browser.cookies.all()['SESSION']
-    print post(url, values,browser.cookies.all()['SESSION'])
+    response = post(url, values,browser.cookies.all()['SESSION'])
 
-    time.sleep(10)
+    if (response.code == 200):
+        print '买入' + code + '成功。'
+
+    time.sleep(5)
     browser.quit()
 
 '''
