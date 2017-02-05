@@ -13,7 +13,6 @@ from splinter import Browser
 cf = ConfigParser.RawConfigParser()
 cf.read("../config/config.conf")
 
-
 def post(url, data,cookie):
     req = urllib2.Request(url)
     req.add_header('Accept','application/json, text/javascript, */*; q=0.01')
@@ -38,10 +37,7 @@ def post(url, data,cookie):
     response = opener.open(req, data)
     print response.code
     print 'message:' + response.msg
-    return response.read()
-
-
-
+    return response
 
 '''
 买入
@@ -75,10 +71,12 @@ def buy(code, shipan):
     }
 
     print browser.cookies.all()['SESSION']
-    print post(url, values,browser.cookies.all()['SESSION'])
+    response = post(url, values,browser.cookies.all()['SESSION'])
 
+    if (response.code == 200):
+        print '买入' + code + '成功。'
 
-    time.sleep(10)
+    time.sleep(5)
     browser.quit()
 
 buy('au1706','S')
