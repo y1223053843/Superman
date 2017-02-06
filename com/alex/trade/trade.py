@@ -60,7 +60,7 @@ def buy(fullcode,code, shipan):
     values = {
     'subjectId':fullcode,
     'createMode':'1',
-    'strategyId':'S0101-00-1000',
+    'strategyId': shipan + '0101-00-1000',
     'strategyType':shipan,
     'marginRate':'10',
     'openAsset':'1',
@@ -112,7 +112,8 @@ def sell(code):
     time.sleep(10)
     browser.quit()
 
-buy('SH600547','600547','S')
+#buy('SH600547','600547','S')
+buy('SZ002230','002230','S')
 
 
 
