@@ -31,6 +31,16 @@ def shifouchiyou(code) :
      if (chiyou_code_index.__contains__(code)):
           return 'yes'
 
+def dangqianjiage(code) :
+     if (code == '000001'):
+         code = 'sh'
+     data_realTime = ts.get_realtime_quotes(code)
+
+     realTimeArray = num.array(data_realTime['price'])
+     realTimeArray = realTimeArray.astype(num.float)
+     return realTimeArray[0]
+
 #print zhangdiefu('150212')
 #print gupiaomingcheng('150212')
 #print shifouchiyou('150212')
+#print dangqianjiage('600547')

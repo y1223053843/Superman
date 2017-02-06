@@ -8,6 +8,7 @@ import urllib
 import cookielib
 import ConfigParser
 from splinter import Browser
+from com.alex.strategy.common import *
 
 #读取配置配置文件
 cf = ConfigParser.RawConfigParser()
@@ -47,8 +48,8 @@ def post(url, data,cookie):
 '''
 买入
 '''
-def buy(code, shipan):
-
+def buy(fullcode,code, shipan):
+    print dangqianjiage(code)
     browser = Browser('firefox')
     browser.visit(cf.get("URL", "url1"))
     browser.click_link_by_partial_text('登录')
@@ -57,13 +58,13 @@ def buy(code, shipan):
     browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
     url = 'https://www.xrcj.com/api/trading-sec/create-stock'
     values = {
-    'subjectId':code,
+    'subjectId':fullcode,
     'createMode':'1',
     'strategyId':'S0101-00-1000',
     'strategyType':shipan,
     'marginRate':'10',
     'openAsset':'1',
-    'openPrice':'9.01',
+    'openPrice':dangqianjiage(code),
     'openEntrustCmd':'1',
     'stopSwitch':'0',
     'marginStopLossRate':'',
@@ -111,7 +112,7 @@ def sell(code):
     time.sleep(10)
     browser.quit()
 
-#buy('SH600547','S')
+buy('SH600547','600547','S')
 
 
 
