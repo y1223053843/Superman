@@ -9,7 +9,6 @@ from com.alex.utils.mongo_util import *
 from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
-from com.alex.trade.trade import *
 import common
 
 '''
@@ -105,7 +104,6 @@ else:
     remove(collectionName)
     content = execute()
 
-    #buy('SH600547','S')
     caozuo = ''
     if content.__contains__('买入'):
         caozuo = ',【操作】买入'
