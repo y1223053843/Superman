@@ -43,8 +43,8 @@ def post(url, data,cookie):
     #cj.set_cookie(cookie)
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
     response = opener.open(req, data)
-    print response.code
-    print 'message:' + response.msg
+    #print response.code
+    #print 'message:' + response.msg
     return response
 
 '''
@@ -64,11 +64,11 @@ def list():
     'length': '99'
     }
 
-    print browser.cookies.all()['SESSION']
+    #print browser.cookies.all()['SESSION']
     response = post(url, values,browser.cookies.all()['SESSION'])
 
     if (response.code == 200):
-        print '列表成功。'
+        print '列表如下：'
 
     content = response.read()
 
@@ -76,6 +76,9 @@ def list():
     if gzipped:
         html= zlib.decompress(content, 16+zlib.MAX_WBITS)
         resultjson = json.loads(html)
+        for a in resultjson['data']:
+            print '%s %s %s %s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'])
+            #print a
         return resultjson
 
     time.sleep(3)
