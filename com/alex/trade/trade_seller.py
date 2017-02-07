@@ -80,7 +80,7 @@ def sell():
             print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
             #print a
 
-            if a['closeType'] == 0 and a['clientProfit'] == 0 :
+            if a['closeType'] == 0 and a['availQty'] > 0 :
                 url = 'https://www.xrcj.com/api/trading/stock-close'
                 values = {
                 'dealingNo':a['dealingNo'],
