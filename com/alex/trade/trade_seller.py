@@ -48,15 +48,16 @@ def post(url, data,cookie):
     return response
 
 '''
-买入
+卖出
 '''
-def list():
+def sell():
     browser = Browser('firefox')
     browser.visit(cf.get("URL", "url1"))
     browser.click_link_by_partial_text('登录')
     browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
     browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
     browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
+
     url = 'https://www.xrcj.com/api/index/sim-list'
     values = {
     'flgParam':'7',
@@ -64,27 +65,45 @@ def list():
     'length': '99'
     }
 
-    #print browser.cookies.all()['SESSION']
-    response = post(url, values,browser.cookies.all()['SESSION'])
+    response_list = post(url, values,browser.cookies.all()['SESSION'])
 
-    if (response.code == 200):
+    if (response_list.code == 200):
         print '列表如下：'
 
-    content = response.read()
+    content_list = response_list.read()
 
-    gzipped = response.headers.get('Content-Encoding')
-    if gzipped:
-        html= zlib.decompress(content, 16+zlib.MAX_WBITS)
-        resultjson = json.loads(html)
+    gzipped_list = response_list.headers.get('Content-Encoding')
+    if gzipped_list:
+        html_list= zlib.decompress(content_list, 16+zlib.MAX_WBITS)
+        resultjson = json.loads(html_list)
         for a in resultjson['data']:
             print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
             #print a
-        return resultjson
+
+            if a['closeType'] == 0 :
+                url = 'https://www.xrcj.com/api/trading/stock-close'
+                values = {
+                'dealingNo':a['dealingNo'],
+                'entrustQty':a['remainQty'],
+                'entrustCmd':'1',
+                'entrustPrice':dangqianjiage(a['subjectCode']),
+                'strategyType':'S'
+                }
+
+                response = post(url, values,browser.cookies.all()['SESSION'])
+                content = response.read()
+                gzipped = response.headers.get('Content-Encoding')
+                if gzipped:
+                    html= zlib.decompress(content, 16+zlib.MAX_WBITS)
+                    print html
+                time.sleep(3)
 
     time.sleep(3)
     browser.quit()
 
-list()
+#buy('SH600547','600547','S')
+#buy('SZ002230','002230','S')
+sell()
 
 
 
