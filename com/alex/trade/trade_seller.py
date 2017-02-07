@@ -101,8 +101,6 @@ def sell():
     time.sleep(3)
     browser.quit()
 
-#buy('SH600547','600547','S')
-#buy('SZ002230','002230','S')
 sell()
 
 
