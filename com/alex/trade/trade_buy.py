@@ -90,7 +90,7 @@ def buy(fullcode,code, shipan):
         browser.quit()
         print '======success======'
 
-param = sys.argv[0]
+param = sys.argv[1]
 if (param == 1):
     buy('SH600547','600547','S')
 elif (param == 2):
