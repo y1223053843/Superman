@@ -73,20 +73,22 @@ def buy(fullcode,code, shipan):
     'sourceDealingNo':''
     }
 
-    #print browser.cookies.all()['SESSION']
-    response = post(url, values,browser.cookies.all()['SESSION'])
+    try :
+        #print browser.cookies.all()['SESSION']
+        response = post(url, values,browser.cookies.all()['SESSION'])
 
-    content = response.read()
+        content = response.read()
 
-    gzipped = response.headers.get('Content-Encoding')
-    if gzipped:
-        html= zlib.decompress(content, 16+zlib.MAX_WBITS)
-        print html
-        #return html
+        gzipped = response.headers.get('Content-Encoding')
+        if gzipped:
+            html= zlib.decompress(content, 16+zlib.MAX_WBITS)
+            print html
+            #return html
 
-    time.sleep(3)
-    browser.quit()
-    print '======success======'
+        time.sleep(3)
+    finally:
+        browser.quit()
+        print '======success======'
 
 buy('SH600547','600547','S')
 #buy('SZ002230','002230','S')

@@ -64,27 +64,29 @@ def list():
     'length': '99'
     }
 
-    #print browser.cookies.all()['SESSION']
-    response = post(url, values,browser.cookies.all()['SESSION'])
+    try:
+        #print browser.cookies.all()['SESSION']
+        response = post(url, values,browser.cookies.all()['SESSION'])
 
-    if (response.code == 200):
-        print '列表如下：'
+        if (response.code == 200):
+            print '列表如下：'
 
-    content = response.read()
+        content = response.read()
 
-    gzipped = response.headers.get('Content-Encoding')
-    if gzipped:
-        html= zlib.decompress(content, 16+zlib.MAX_WBITS)
-        resultjson = json.loads(html)
-        for a in resultjson['data']:
-            print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
-            #print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
-            #print a
-        #return resultjson
+        gzipped = response.headers.get('Content-Encoding')
+        if gzipped:
+            html= zlib.decompress(content, 16+zlib.MAX_WBITS)
+            resultjson = json.loads(html)
+            for a in resultjson['data']:
+                print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
+                #print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
+                #print a
+            #return resultjson
 
-    time.sleep(3)
-    browser.quit()
-    print '======success======'
+        time.sleep(3)
+    finally:
+        browser.quit()
+        print '======success======'
 
 list()
 

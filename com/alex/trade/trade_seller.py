@@ -65,42 +65,44 @@ def sell():
     'length': '99'
     }
 
-    response_list = post(url, values,browser.cookies.all()['SESSION'])
+    try:
+        response_list = post(url, values,browser.cookies.all()['SESSION'])
 
-    if (response_list.code == 200):
-        print '列表如下：'
+        if (response_list.code == 200):
+            print '列表如下：'
 
-    content_list = response_list.read()
+        content_list = response_list.read()
 
-    gzipped_list = response_list.headers.get('Content-Encoding')
-    if gzipped_list:
-        html_list= zlib.decompress(content_list, 16+zlib.MAX_WBITS)
-        resultjson = json.loads(html_list)
-        for a in resultjson['data']:
-            print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
-            #print a
+        gzipped_list = response_list.headers.get('Content-Encoding')
+        if gzipped_list:
+            html_list= zlib.decompress(content_list, 16+zlib.MAX_WBITS)
+            resultjson = json.loads(html_list)
+            for a in resultjson['data']:
+                print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
+                #print a
 
-            if a['closeType'] == 0 and a['availQty'] > 0 :
-                url = 'https://www.xrcj.com/api/trading/stock-close'
-                values = {
-                'dealingNo':a['dealingNo'],
-                'entrustQty':a['remainQty'],
-                'entrustCmd':'1',
-                'entrustPrice':dangqianjiage(a['subjectCode']),
-                'strategyType':'S'
-                }
+                if a['closeType'] == 0 and a['availQty'] > 0 :
+                    url = 'https://www.xrcj.com/api/trading/stock-close'
+                    values = {
+                    'dealingNo':a['dealingNo'],
+                    'entrustQty':a['remainQty'],
+                    'entrustCmd':'1',
+                    'entrustPrice':dangqianjiage(a['subjectCode']),
+                    'strategyType':'S'
+                    }
 
-                response = post(url, values,browser.cookies.all()['SESSION'])
-                content = response.read()
-                gzipped = response.headers.get('Content-Encoding')
-                if gzipped:
-                    html= zlib.decompress(content, 16+zlib.MAX_WBITS)
-                    print html
-                time.sleep(3)
+                    response = post(url, values,browser.cookies.all()['SESSION'])
+                    content = response.read()
+                    gzipped = response.headers.get('Content-Encoding')
+                    if gzipped:
+                        html= zlib.decompress(content, 16+zlib.MAX_WBITS)
+                        print html
+                    time.sleep(3)
 
-    time.sleep(3)
-    browser.quit()
-    print '======success======'
+        time.sleep(3)
+    finally:
+        browser.quit()
+        print '======success======'
 
 sell()
 
