@@ -87,8 +87,13 @@ def buy(fullcode,code, shipan):
     time.sleep(3)
     browser.quit()
 
-buy('SH600547','600547','S')
+#buy('SH600547','600547','S')
 #buy('SZ002230','002230','S')
+#buy('SZ000980','000980','S')
+
+#buy('SH600547','600547','R')
+#buy('SZ002230','002230','R')
+#buy('SZ000980','000980','R')
 
 
 
