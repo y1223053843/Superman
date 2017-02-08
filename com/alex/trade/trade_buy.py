@@ -91,11 +91,11 @@ def buy(fullcode,code, shipan):
         print '======success======'
 
 param = sys.argv[1]
-if (param == 1):
+if (param == '1'):
     buy('SH600547','600547','S')
-elif (param == 2):
+elif (param == '2'):
     buy('SZ002230','002230','S')
-elif (param == 3):
+elif (param == '3'):
     buy('SZ000980','000980','S')
 else:
     print "请输入参数："
