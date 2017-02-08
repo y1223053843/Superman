@@ -92,11 +92,12 @@ def buy(fullcode,code, shipan):
 
 param = sys.argv[0]
 if (param == 1):
-    buy('SH600547','600547','S')
+    buy('SH600547','600547','R')
 elif (param == 2):
-    buy('SZ002230','002230','S')
+    buy('SZ002230','002230','R')
 elif (param == 3):
-    buy('SZ000980','000980','S')
+    buy('SZ000980','000980','R')
+
 
 
 
