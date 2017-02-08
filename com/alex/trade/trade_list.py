@@ -80,10 +80,11 @@ def list():
             print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
             #print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
             #print a
-        return resultjson
+        #return resultjson
 
     time.sleep(3)
     browser.quit()
+    print '======success======'
 
 list()
 

@@ -82,12 +82,13 @@ def buy(fullcode,code, shipan):
     if gzipped:
         html= zlib.decompress(content, 16+zlib.MAX_WBITS)
         print html
-        return html
+        #return html
 
     time.sleep(3)
     browser.quit()
+    print '======success======'
 
-#buy('SH600547','600547','S')
+buy('SH600547','600547','S')
 #buy('SZ002230','002230','S')
 #buy('SZ000980','000980','S')
 
