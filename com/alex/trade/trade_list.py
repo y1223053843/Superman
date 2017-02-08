@@ -42,7 +42,7 @@ def post(url, data,cookie):
     cj=cookielib.CookieJar()
     #cj.set_cookie(cookie)
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-    response = opener.open(req, data)
+    response = opener.open(req, data, timeout=30)
     #print response.code
     #print 'message:' + response.msg
     return response
