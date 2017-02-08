@@ -97,6 +97,11 @@ elif (param == 2):
     buy('SZ002230','002230','R')
 elif (param == 3):
     buy('SZ000980','000980','R')
+else:
+    print "请输入参数："
+    print "1:山东黄金"
+    print "2:科大讯飞"
+    print "3:金马股份"
 
 
 
