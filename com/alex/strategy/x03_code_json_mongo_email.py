@@ -16,7 +16,7 @@ import common
 常量
 ##################################
 '''
-collectionName = "report_002562_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_002405_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
@@ -25,7 +25,7 @@ collectionName = "report_002562_" + time.strftime('%Y-%m-%d', time.localtime(tim
 #################################
 '''
 def execute():
-    query_result = ['002562']
+    query_result = ['002405']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -110,5 +110,5 @@ else:
     elif content.__contains__('卖出'):
         caozuo = ',【操作】卖出'
 
-    toDataFrame_param_content({},'★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】兄弟科技' + caozuo + '#',content, collectionName)
+    toDataFrame_param_content({},'★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】四维图新' + caozuo + '#',content, collectionName)
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
