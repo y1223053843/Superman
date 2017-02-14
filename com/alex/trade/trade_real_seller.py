@@ -88,7 +88,7 @@ def sell():
                     'entrustQty':a['remainQty'],
                     'entrustCmd':'1',
                     'entrustPrice':dangqianjiage(a['subjectCode']),
-                    'strategyType':'S'
+                    'strategyType':'R'
                     }
 
                     response = post(url, values,browser.cookies.all()['SESSION'])

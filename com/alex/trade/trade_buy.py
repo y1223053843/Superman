@@ -96,6 +96,7 @@ if count == 1 :
     print "1:山东黄金"
     print "2:科大讯飞"
     print "3:金马股份"
+    print "4:秋林集团"
 else:
     param = sys.argv[1]
     if (param == '1'):
@@ -104,11 +105,14 @@ else:
         buy('SZ002230','002230','S')
     elif (param == '3'):
         buy('SZ000980','000980','S')
+    elif (param == '4'):
+        buy('SH600891','600891','S')
     else:
         print "请输入参数："
         print "1:山东黄金"
         print "2:科大讯飞"
         print "3:金马股份"
+        print "4:秋林集团"
 
 
 
