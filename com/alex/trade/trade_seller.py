@@ -104,7 +104,84 @@ def sell():
         browser.quit()
         print '======success======'
 
-sell()
+
+'''
+卖出
+'''
+def sell_by_code(code):
+    browser = Browser('firefox')
+    browser.visit(cf.get("URL", "url1"))
+    browser.click_link_by_partial_text('登录')
+    browser.find_by_xpath("//input[@class='w-input telephone']").fill(cf.get("Trade", "name"))
+    browser.find_by_xpath("//input[@class='w-input password']").fill(cf.get("Trade", "password"))
+    browser.find_by_xpath("//div[@class='btn-red loginBtn']").click()
+
+    url = 'https://www.xrcj.com/api/index/sim-list'
+    values = {
+    'flgParam':'7',
+    'start':'0',
+    'length': '99'
+    }
+
+    try:
+        response_list = post(url, values,browser.cookies.all()['SESSION'])
+
+        if (response_list.code == 200):
+            print '列表如下：'
+
+        content_list = response_list.read()
+
+        gzipped_list = response_list.headers.get('Content-Encoding')
+        if gzipped_list:
+            html_list= zlib.decompress(content_list, 16+zlib.MAX_WBITS)
+            resultjson = json.loads(html_list)
+            for a in resultjson['data']:
+                print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
+                #print a
+
+                if a['closeType'] == 0 and a['availQty'] > 0 and a['subjectCode'] == code :
+                    url = 'https://www.xrcj.com/api/trading/stock-close'
+                    values = {
+                    'dealingNo':a['dealingNo'],
+                    'entrustQty':a['remainQty'],
+                    'entrustCmd':'1',
+                    'entrustPrice':dangqianjiage(a['subjectCode']),
+                    'strategyType':'S'
+                    }
+
+                    response = post(url, values,browser.cookies.all()['SESSION'])
+                    content = response.read()
+                    gzipped = response.headers.get('Content-Encoding')
+                    if gzipped:
+                        html= zlib.decompress(content, 16+zlib.MAX_WBITS)
+                        print html
+                    time.sleep(3)
+
+        time.sleep(3)
+    finally:
+        browser.quit()
+        print '======success======'
+
+count = len(sys.argv)
+if count == 1 :
+    print "======全部卖出======"
+    sell()
+else:
+    param = sys.argv[1]
+    if (param == '1'):
+        sell_by_code('600547')
+    elif (param == '2'):
+        sell_by_code('002230')
+    elif (param == '3'):
+        sell_by_code('000980')
+    elif (param == '4'):
+        sell_by_code('600891')
+    else:
+        print "请输入参数："
+        print "1:山东黄金"
+        print "2:科大讯飞"
+        print "3:金马股份"
+        print "4:秋林集团"
 
 
 
