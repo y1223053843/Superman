@@ -114,6 +114,8 @@ def execute_param():
             #print  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
+            print '买入mairuresult_bl_60!='':'
+            print  mairuresult_bl_60 != ''
             if ( mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
@@ -124,6 +126,8 @@ def execute_param():
 
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
+            print '卖出mairuresult_bl_60!='':'
+            print maichuresult_bl_60 != ''
             if ( maichuresult_bl_60 != ''):
                 j = 0
                 for j in [0] :
@@ -147,7 +151,7 @@ def execute_param():
                              + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
                              + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
 
-            insertRecord_param(jsonParam, collectionName)
+            #insertRecord_param(jsonParam, collectionName)
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
             print e
@@ -165,6 +169,8 @@ def execute_param():
 count = len(sys.argv)
 if (count == 2):
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
+    #param = sys.argv[1]
+    #print param
     execute_param()
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
 else:
