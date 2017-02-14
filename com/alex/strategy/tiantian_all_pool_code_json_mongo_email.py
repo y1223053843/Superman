@@ -147,6 +147,6 @@ else:
 
     remove(collectionName2)
     execute(all_code, all_title,all_time)
-    toDataFrame_param({}, '★★★★★Tiantian_All_Code_Json_Mongo_Email', collectionName2)
+    toDataFrame_param({}, '★★★★★Tiantian_All_Code_Json_Mongo_Email' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) , collectionName2)
 
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====tiantian_all_code_json_mongo_email End====='
