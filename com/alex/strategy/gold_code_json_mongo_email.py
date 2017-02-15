@@ -25,7 +25,7 @@ collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600547']
+    query_result = ['600547','002716','600891']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -87,10 +87,18 @@ def execute():
             logging.error("error:" + codeItem)
             print e
 
+        caozuo = ''
+        if xinhao.__contains__('买入'):
+            caozuo = ',【操作】买入'
+        elif xinhao.__contains__('卖出'):
+            caozuo = ',【操作】卖出'
+
+        toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo +'#',xinhao, collectionName)
+
     return xinhao
 
 def execute_param():
-    query_result = ['600547']
+    query_result = ['600547','002716','600891']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -119,8 +127,8 @@ def execute_param():
             if ( mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
-                    xinhao = xinhao + codeItem + '买入信号出现：' +  mairuresult_D + ' ' + mairuresult_60 + ' ' + mairuresult_bl_60 + ' '
-                    email_util.sendMail(codeItem + '买入信号出现：' +  mairuresult_60 + ' ' + mairuresult_bl_60, codeItem + '买入，谨慎谨慎再谨慎')
+                    xinhao = xinhao + codeItem + '买入信号出现：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + ' '
+                    email_util.sendMail(codeItem + '买入信号出现：<br>' + mairuresult_D + '<br>' + mairuresult_60 + '<br>' + mairuresult_bl_60, codeItem + '买入，谨慎谨慎再谨慎')
                     i = i + 1
                     time.sleep(3)
 
@@ -131,8 +139,8 @@ def execute_param():
             if ( maichuresult_bl_60 != ''):
                 j = 0
                 for j in [0] :
-                    xinhao = xinhao + codeItem + '卖出信号出现：' +  maichuresult_D + ' ' + maichuresult_60 + ' ' + maichuresult_bl_60 + ' '
-                    email_util.sendMail(codeItem + '卖出信号出现：' +  maichuresult_60 + ' ' + maichuresult_bl_60, codeItem + '卖出，果断果断再果断')
+                    xinhao = xinhao + codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + ' '
+                    email_util.sendMail(codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' +maichuresult_60 + '<br>' + maichuresult_bl_60, codeItem + '卖出，果断果断再果断')
                     j = j + 1
                     time.sleep(3)
 
@@ -176,13 +184,5 @@ if (count == 2):
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
     remove(collectionName)
-    content = execute()
-
-    caozuo = ''
-    if content.__contains__('买入'):
-        caozuo = ',【操作】买入'
-    elif content.__contains__('卖出'):
-        caozuo = ',【操作】卖出'
-
-    toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】山东黄金'+ caozuo +'#',content, collectionName)
+    execute()
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
