@@ -26,8 +26,8 @@ collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.
 '''
 def execute():
     query_result = ['600547','002716','600891']
-    xinhao = ''
     for codeItem in query_result:
+        xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
 
