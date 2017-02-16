@@ -49,7 +49,8 @@ def execute():
             #print  mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
-            if (mairuresult_D !='' and (mairuresult_60  != '' or mairuresult_bl_60 != '')):
+            #if (mairuresult_D !='' and (mairuresult_60  != '' or mairuresult_bl_60 != '')):
+            if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
                     xinhao = xinhao + codeItem + '买入信号出现：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + ' '
