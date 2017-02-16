@@ -21,16 +21,14 @@ collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.
 '''
 #################################
 执行函数 execute
-说明：
 #################################
 '''
 def execute():
-    query_result = ['600547','002716','600891']
+    query_result = ['600547','002716','600891','002155']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
-
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
             macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60,mairuresult_60,maichuresult_60  = MACD(codeItem,  '60')
             macd_D,macdsignal_D,macdhist_D,jsonResult_D,result_D,mairuresult_D,maichuresult_D  = MACD(codeItem,  'D')
@@ -99,7 +97,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600547','002716','600891']
+    query_result = ['600547','002716','600891','002155']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
