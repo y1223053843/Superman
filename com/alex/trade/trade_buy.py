@@ -108,11 +108,16 @@ else:
     elif (param == '4'):
         buy('SH600891','600891','S')
     else:
-        print "请输入参数："
-        print "1:山东黄金"
-        print "2:科大讯飞"
-        print "3:金马股份"
-        print "4:秋林集团"
+        if (param.startswith('600')):
+            buy('SH' + param, param, 'S')
+        elif (param.startswith('300') or param.startswith('000') or param.startswith('002')):
+            buy('SZ' + param, param, 'S')
+        else:
+            print "请输入参数："
+            print "1:山东黄金"
+            print "2:科大讯飞"
+            print "3:金马股份"
+            print "4:秋林集团"
 
 
 
