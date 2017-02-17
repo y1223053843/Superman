@@ -92,7 +92,13 @@ def execute():
         elif xinhao.__contains__('卖出'):
             caozuo = ',【操作】卖出'
 
-        toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo +'#',xinhao, collectionName)
+        caozuo2 = ''
+        if xinhao.__contains__('V型翻转'):
+            caozuo = ',【操作】买入点'
+        elif xinhao.__contains__('下降1'):
+            caozuo = ',【操作】卖出点'
+
+        toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
 
     return xinhao
 
