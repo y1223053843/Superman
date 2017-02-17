@@ -77,6 +77,9 @@ def sell():
         if gzipped_list:
             html_list= zlib.decompress(content_list, 16+zlib.MAX_WBITS)
             resultjson = json.loads(html_list)
+            if (resultjson['success'] == False):
+                print resultjson
+                return ""
             for a in resultjson['data']:
                 print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
                 #print a
