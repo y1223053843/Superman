@@ -3,6 +3,7 @@
 import sys
 import time
 sys.path.append('/root/worksapce/Superman')
+sys.path.append('d:\workspace\Git\Superman')
 import urllib2
 import urllib
 import cookielib
