@@ -77,27 +77,25 @@ def buy(fullcode,code, shipan):
     try :
         #print browser.cookies.all()['SESSION']
         response = post(url, values,browser.cookies.all()['SESSION'])
-
         content = response.read()
-
         gzipped = response.headers.get('Content-Encoding')
         if gzipped:
             html= zlib.decompress(content, 16+zlib.MAX_WBITS)
             print html
             #return html
 
-        time.sleep(3)
+        time.sleep(5)
     finally:
         browser.quit()
         print '======success======'
 
 count = len(sys.argv)
 if count == 1 :
-    print "请输入参数："
-    print "1:山东黄金"
-    print "2:科大讯飞"
-    print "3:金马股份"
-    print "4:秋林集团"
+    print "Please input the param:"
+    print "1:Shan Dong Huang Jin"
+    print "2:Ke Da Xun Fei"
+    print "3:Jin Ma Gu Fen"
+    print "4:Qiu Lin Ji Tuan"
 else:
     param = sys.argv[1]
     if (param == '1'):
@@ -114,11 +112,11 @@ else:
         elif (param.startswith('300') or param.startswith('000') or param.startswith('002')):
             buy('SZ' + param, param, 'S')
         else:
-            print "请输入参数："
-            print "1:山东黄金"
-            print "2:科大讯飞"
-            print "3:金马股份"
-            print "4:秋林集团"
+            print "Please input the param:"
+            print "1:Shan Dong Huang Jin"
+            print "2:Ke Da Xun Fei"
+            print "3:Jin Ma Gu Fen"
+            print "4:Qiu Lin Ji Tuan"
 
 
 
