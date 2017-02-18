@@ -70,7 +70,7 @@ def sell():
         response_list = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response_list.code == 200):
-            print '列表如下：'
+            print 'The List:'
 
         content_list = response_list.read()
 
@@ -103,7 +103,7 @@ def sell():
                         print html
                     time.sleep(3)
 
-        time.sleep(3)
+        time.sleep(10)
     finally:
         browser.quit()
         print '======success======'
@@ -131,7 +131,7 @@ def sell_by_code(code):
         response_list = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response_list.code == 200):
-            print '列表如下：'
+            print 'The List:'
 
         content_list = response_list.read()
 
@@ -168,7 +168,7 @@ def sell_by_code(code):
 
 count = len(sys.argv)
 if count == 1 :
-    print "======全部模拟卖出======"
+    print "Mo Ni All Sell:"
     sell()
 else:
     param = sys.argv[1]
@@ -181,7 +181,7 @@ else:
     elif (param == '4'):
         sell_by_code('600891')
     else:
-        print "======模拟卖出：" + param
+        print "======Mo Ni Sell:" + param
         sell_by_code(param)
 
 
