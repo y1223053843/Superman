@@ -70,7 +70,7 @@ def sell():
         response_list = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response_list.code == 200):
-            print '列表如下：'
+            print 'The Real List:'
 
         content_list = response_list.read()
 
@@ -127,7 +127,7 @@ def sell_by_code(code):
         response_list = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response_list.code == 200):
-            print '列表如下：'
+            print 'The Real List:'
 
         content_list = response_list.read()
 
@@ -164,7 +164,7 @@ def sell_by_code(code):
 
 count = len(sys.argv)
 if count == 1 :
-    print "Mo Ni All Sell:"
+    print "Real All Sell:"
     sell()
 else:
     param = sys.argv[1]
@@ -177,6 +177,6 @@ else:
     elif (param == '4'):
         sell_by_code('600891')
     else:
-        print "======Mo Ni Sell:" + param
+        print "======Real Sell:" + param
         sell_by_code(param)
 
