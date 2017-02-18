@@ -96,6 +96,7 @@ if count == 1 :
     print "2:Ke Da Xun Fei"
     print "3:Jin Ma Gu Fen"
     print "4:Qiu Lin Ji Tuan"
+    time.sleep(10)
 else:
     param = sys.argv[1]
     if (param == '1'):
@@ -117,6 +118,7 @@ else:
             print "2:Ke Da Xun Fei"
             print "3:Jin Ma Gu Fen"
             print "4:Qiu Lin Ji Tuan"
+            time.sleep(10)
 
 
 
