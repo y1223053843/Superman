@@ -69,7 +69,7 @@ def list():
         response = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response.code == 200):
-            print '列表如下：'
+            print 'The List:'
 
         content = response.read()
 
@@ -83,7 +83,7 @@ def list():
                 #print a
             #return resultjson
 
-        time.sleep(3)
+        time.sleep(10)
     finally:
         browser.quit()
         print '======success======'
