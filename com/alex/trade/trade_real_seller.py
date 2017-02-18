@@ -3,6 +3,7 @@
 import sys
 import time
 sys.path.append('/root/worksapce/Superman')
+sys.path.append('d:\workspace\Git\Superman')
 import urllib2
 import urllib
 import cookielib
@@ -163,7 +164,7 @@ def sell_by_code(code):
 
 count = len(sys.argv)
 if count == 1 :
-    print "======全部卖出======"
+    print "Mo Ni All Sell:"
     sell()
 else:
     param = sys.argv[1]
@@ -176,13 +177,6 @@ else:
     elif (param == '4'):
         sell_by_code('600891')
     else:
-        print "请输入参数："
-        print "1:山东黄金"
-        print "2:科大讯飞"
-        print "3:金马股份"
-        print "4:秋林集团"
-
-
-
-
+        print "======Mo Ni Sell:" + param
+        sell_by_code(param)
 

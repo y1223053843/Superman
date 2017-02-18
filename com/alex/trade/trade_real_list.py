@@ -3,6 +3,7 @@
 import sys
 import time
 sys.path.append('/root/worksapce/Superman')
+sys.path.append('d:\workspace\Git\Superman')
 import urllib2
 import urllib
 import cookielib
@@ -69,7 +70,7 @@ def list():
         response = post(url, values,browser.cookies.all()['SESSION'])
 
         if (response.code == 200):
-            print 'The List:'
+            print 'The Real List:'
 
         content = response.read()
 
@@ -89,7 +90,3 @@ def list():
         print '======success======'
 
 list()
-
-
-
-
