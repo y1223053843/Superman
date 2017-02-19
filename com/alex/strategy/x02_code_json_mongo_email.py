@@ -13,7 +13,9 @@ import common
 
 '''
 ##################################
-常量
+常量 智能制造
+002230 科大讯飞
+300131 英唐智控
 ##################################
 '''
 collectionName = "report_002230_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
