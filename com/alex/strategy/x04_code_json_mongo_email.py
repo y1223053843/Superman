@@ -13,7 +13,9 @@ import common
 
 '''
 ##################################
-常量
+常量 共享单车
+'600818' 中路股份
+'002105' 信隆健康
 ##################################
 '''
 collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
