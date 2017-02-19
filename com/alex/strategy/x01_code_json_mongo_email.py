@@ -13,10 +13,12 @@ import common
 
 '''
 ##################################
-常量
+常量 中国汽车品牌
+000980 金马股份
+601633 长城汽车
 ##################################
 '''
-collectionName = "report_000980_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_ZGQC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
