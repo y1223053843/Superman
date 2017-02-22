@@ -13,7 +13,7 @@ import common
 
 '''
 ##################################
-常量
+常量：贵金属
 ##################################
 '''
 collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
