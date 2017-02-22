@@ -95,7 +95,7 @@ def execute():
         caozuo = ''
         if xinhao.__contains__('买入'):
             caozuo = ',【操作】买入'
-        elif xinhao.__contains__('卖出'):
+        elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = ',【操作】卖出'
 
         caozuo2 = ''
