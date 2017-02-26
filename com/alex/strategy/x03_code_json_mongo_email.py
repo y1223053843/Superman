@@ -19,7 +19,9 @@ import common
 造纸：
 000488
 核能：
-601985
+601985 中国核能
+能源互联网
+002610 爱康科技 与百度合作能源互联网
 ##################################
 '''
 collectionName = "report_GJCGG_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -30,7 +32,7 @@ collectionName = "report_GJCGG_" + time.strftime('%Y-%m-%d', time.localtime(time
 #################################
 '''
 def execute():
-    query_result = ['000401','601985','000488']
+    query_result = ['000401','601985','000488','002610']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -101,15 +103,15 @@ def execute():
         caozuo2 = ''
         if xinhao.__contains__('V型翻转'):
             caozuo = ',【操作】买入点'
+            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
         elif xinhao.__contains__('下降1'):
             caozuo = ',【操作】卖出点'
-
-        toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
+            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
 
     return xinhao
 
 def execute_param():
-    query_result = ['000401','601985','000488']
+    query_result = ['000401','601985','000488','002610']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
