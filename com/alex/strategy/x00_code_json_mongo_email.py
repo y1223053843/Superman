@@ -13,10 +13,13 @@ import common
 
 '''
 ##################################
-常量：贵金属
+常量 中国汽车品牌
+000980 金马股份
+601633 长城汽车
+600686 金龙汽车
 ##################################
 '''
-collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
+collectionName = "report_ZGQC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
 '''
 #################################
@@ -24,7 +27,7 @@ collectionName = "report_Gold_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600547','002716','600891','002155','601020']
+    query_result = ['000980','601633','600686']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -62,8 +65,7 @@ def execute():
                 j = 0
                 for j in [0] :
                     xinhao = xinhao + codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + ' '
-                    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + xinhao
-                    #email_util.sendMail(codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' +maichuresult_60 + '<br>' + maichuresult_bl_60, codeItem + '卖出，果断果断再果断')
+                    email_util.sendMail(codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' +maichuresult_60 + '<br>' + maichuresult_bl_60, codeItem + '卖出，果断果断再果断')
                     j = j + 1
                     time.sleep(3)
 
@@ -104,7 +106,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600547','002716','600891','002155','601020']
+    query_result = ['000980','601633','600686']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
