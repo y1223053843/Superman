@@ -16,6 +16,7 @@ import common
 常量 智能制造
 002230 科大讯飞
 300131 英唐智控
+002439 启明星辰 投资达闼科技 人工智能机器人
 ##################################
 '''
 collectionName = "report_002230_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
