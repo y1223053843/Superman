@@ -18,10 +18,16 @@ import common
 共享单车
 '600818' 中路股份
 '002105' 信隆健康
+
 华大基因上市
 002642 荣之联
+
 一带一路
 000425 徐工机械
+
+血制品
+300294 博雅生物
+002007 华兰生物
 ##################################
 '''
 collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -32,7 +38,7 @@ collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600818','002105','002642','000425']
+    query_result = ['600818','002105','002642','000425','300294','002007']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -111,7 +117,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600818','002105','002642','000425']
+    query_result = ['600818','002105','002642','000425','300294','002007']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
