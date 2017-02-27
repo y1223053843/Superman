@@ -17,8 +17,9 @@ import common
 000980 金马股份
 601633 长城汽车
 600686 金龙汽车
-601777 力帆股份
-000572 海马汽车
+601777 力帆股份 共享汽车
+000572 海马汽车 共享汽车
+000625 长安汽车
 ##################################
 '''
 collectionName = "report_ZGQC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -29,7 +30,7 @@ collectionName = "report_ZGQC_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000980','601633','600686','601777','000572']
+    query_result = ['000980','601633','600686','601777','000572','000625']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -110,7 +111,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['000980','601633','600686','601777','000572']
+    query_result = ['000980','601633','600686','601777','000572','000625']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
