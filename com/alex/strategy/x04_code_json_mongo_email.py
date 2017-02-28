@@ -29,6 +29,15 @@ import common
 血制品
 300294 博雅生物
 002007 华兰生物
+
+蚂蚁金服
+002208 合肥城建
+601206 君正集团
+600895 张江高科
+
+360
+000839 中信国安
+300015 爱尔眼科
 ##################################
 '''
 collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -39,7 +48,7 @@ collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600679','600818','002105','002642','000425','300294','002007']
+    query_result = ['600679','600818','002105','002642','000425','300294','002007','002208','601206','600895','000839','300015']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -113,12 +122,12 @@ def execute():
             toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = ',【操作】卖出点'
-            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
+            #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
 
     return xinhao
 
 def execute_param():
-    query_result = ['600679','600818','002105','002642','000425','300294','002007']
+    query_result = ['600679','600818','002105','002642','000425','300294','002007','002208','601206','600895','000839','300015']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
