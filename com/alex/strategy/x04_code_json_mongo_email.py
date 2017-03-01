@@ -22,6 +22,7 @@ import common
 
 华大基因上市
 002642 荣之联
+300009 安科生物
 
 一带一路
 000425 徐工机械
@@ -48,7 +49,7 @@ collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600679','600818','002105','002642','000425','300294','002007','002208','601206','600895','000839','300015']
+    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -127,7 +128,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600679','600818','002105','002642','000425','300294','002007','002208','601206','600895','000839','300015']
+    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
