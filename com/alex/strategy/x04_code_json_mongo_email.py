@@ -39,6 +39,15 @@ import common
 360
 000839 中信国安
 300015 爱尔眼科
+
+涨价
+002449 国星光电 矾铁涨价
+002326 永太科技 萤石涨价
+
+钛白粉
+002136 安纳达
+002601 佰利联
+002145 中核钛白
 ##################################
 '''
 collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -49,7 +58,7 @@ collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015']
+    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015','002449','002326','002136','002601','002145']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -79,7 +88,7 @@ def execute():
                     xinhao = xinhao + codeItem + '买入信号出现：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + ' '
                     email_util.sendMail(codeItem + '买入信号出现：<br>' + mairuresult_D + '<br>' + mairuresult_60 + '<br>' + mairuresult_bl_60, codeItem + '买入，谨慎谨慎再谨慎')
                     i = i + 1
-                    time.sleep(3)
+                    time.sleep(1)
 
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
             #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
@@ -89,7 +98,7 @@ def execute():
                     xinhao = xinhao + codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + ' '
                     email_util.sendMail(codeItem + '卖出信号出现：<br>' +  maichuresult_D + '<br>' +maichuresult_60 + '<br>' + maichuresult_bl_60, codeItem + '卖出，果断果断再果断')
                     j = j + 1
-                    time.sleep(3)
+                    time.sleep(1)
 
             jsonDic['07上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
@@ -128,7 +137,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015']
+    query_result = ['600679','600818','002105','002642','300009','000425','300294','002007','002208','601206','600895','000839','300015','002449','002326','002136','002601','002145']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
