@@ -48,7 +48,8 @@ def strategy001(query_result):
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
-            #if (mairuresult_D !='' and (mairuresult_60  != '' or mairuresult_bl_60 != '')):
+
+            # 买入策略
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
                 for i in [0] :
@@ -58,7 +59,8 @@ def strategy001(query_result):
                     time.sleep(1)
 
             jsonDic['06卖出信息'] = maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
-            #print  maichuresult_60 + ' ' + maichuresult_D + ' ' + maichuresult_bl_60 + ' ' + maichuresult_bl_D
+
+            # 卖出策略
             if (maichuresult_60 != '' or  maichuresult_bl_60 != ''):
                 j = 0
                 for j in [0] :
@@ -68,7 +70,6 @@ def strategy001(query_result):
                     time.sleep(1)
 
             # 验证
-            jsonDic['07上升通道'] = result_D + ' ' + result_bl_D
             jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
             jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
             jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
