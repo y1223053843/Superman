@@ -97,6 +97,9 @@ def execute():
             logging.error("error:" + codeItem)
             print e
 
+        xiaomowang = '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
+        xiaomowang = xiaomowang + '<br> 买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+
         caozuo = ''
         if xinhao.__contains__('买入'):
             caozuo = ',【操作】买入'
@@ -109,7 +112,7 @@ def execute():
             toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
         elif xinhao.__contains__('下降1'):
             caozuo = ',【操作】卖出点'
-            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
+            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao + xiaomowang, collectionName)
 
     return xinhao
 
