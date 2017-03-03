@@ -23,7 +23,7 @@ collectionName = "report_strategy001_" + time.strftime('%Y-%m-%d', time.localtim
 策略1执行函数 strategy001
 #################################
 '''
-def strategy001(query_result):
+def strategy001(query_result, zhuti):
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -102,7 +102,7 @@ def strategy001(query_result):
         caozuo2 = ''
         if xinhao.__contains__('V型翻转'):
             caozuo = ',【操作】买入点'
-            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao + xiaomowang, collectionName)
+            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 + ',' + zhuti + '#',xinhao + xiaomowang, collectionName)
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = ',【操作】卖出点'
             #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
@@ -122,5 +122,5 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
     remove(collectionName)
     query_result = ['600679']
-    strategy001(query_result)
+    strategy001(query_result,'【主题】')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
