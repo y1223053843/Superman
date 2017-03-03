@@ -22,6 +22,8 @@ import common
 600891 秋林集团
 
 600463 空港股份
+
+000401 冀东水泥
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -32,7 +34,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000980','600463']
+    query_result = ['000980','000401']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
