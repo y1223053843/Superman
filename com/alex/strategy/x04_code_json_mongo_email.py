@@ -100,4 +100,7 @@ else:
     query_result = ['000425']
     strategy001(query_result, '【主题】一带一路', collectionName)
 
+    query_result = ['600702','000799','600199']
+    strategy001(query_result, '【主题】白酒', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
