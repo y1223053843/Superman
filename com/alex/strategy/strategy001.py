@@ -23,7 +23,8 @@ collectionName = "report_strategy001_" + time.strftime('%Y-%m-%d', time.localtim
 策略1执行函数 strategy001
 #################################
 '''
-def strategy001(query_result, zhuti):
+def strategy001(query_result, zhuti, collectionName):
+    remove(collectionName)
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -90,7 +91,8 @@ def strategy001(query_result, zhuti):
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
+        xiaomowang = '<br>================================'
+        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
         xiaomowang = xiaomowang + '<br> 买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
 
         caozuo = ''
@@ -113,7 +115,7 @@ def strategy001(query_result, zhuti):
 ########################
 主运行函数main
 ########################
-'''
+
 count = len(sys.argv)
 if (count == 2):
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
@@ -124,3 +126,4 @@ else:
     query_result = ['600679']
     strategy001(query_result,'【主题】')
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
+'''
