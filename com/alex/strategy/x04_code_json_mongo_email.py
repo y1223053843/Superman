@@ -87,6 +87,8 @@ else:
     华大基因上市
     002642 荣之联
     300009 安科生物
+    300216 千山药机
+    300016 北陆药业
 
     一带一路
     000425 徐工机械
@@ -94,7 +96,7 @@ else:
     query_result = ['600679','600818','002105']
     strategy001(query_result, '【主题】共享经济', collectionName)
 
-    query_result = ['002642','300009']
+    query_result = ['002642','300009','300216','300016']
     strategy001(query_result, '【主题】基因', collectionName)
 
     query_result = ['000425']
