@@ -37,23 +37,20 @@ if (count == 2):
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
-    #remove(collectionName)
-    #execute()
-
     '''
-    蚂蚁金服
+    【主题】蚂蚁金服360
+    蚂蚁金服上市
     002208 合肥城建
     601206 君正集团
     600895 张江高科
 
-    360
+    360上市
     000839 中信国安
     300015 爱尔眼科
     600084 中葡股份
     '''
     query_result = ['002208','601206','600895','000839','300015','600084']
     strategy001(query_result, '【主题】蚂蚁360上市', collectionName)
-
 
     '''
     血制品
@@ -102,6 +99,12 @@ else:
     query_result = ['000425']
     strategy001(query_result, '【主题】一带一路', collectionName)
 
+    '''
+    【主题】白酒
+    600702 沱牌舍得
+    000799 酒鬼酒
+    600199 金种子酒
+    '''
     query_result = ['600702','000799','600199']
     strategy001(query_result, '【主题】白酒', collectionName)
 
