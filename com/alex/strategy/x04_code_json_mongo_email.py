@@ -14,10 +14,7 @@ import common
 
 '''
 ##################################
-常量 选股宝
-
-
-
+常量
 ##################################
 '''
 collectionName = "report_GXDC_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
