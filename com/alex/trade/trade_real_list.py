@@ -79,7 +79,7 @@ def list():
             html= zlib.decompress(content, 16+zlib.MAX_WBITS)
             resultjson = json.loads(html)
             for a in resultjson['data']:
-                print '%s %s %s profit:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'])
+                print '%s %s %s profit:%s remain:%s'%(a['subjectCode'],a['costPrice'],a['closeType'], a['clientProfit'],a['remainQty'])
                 #print '%s %s %s %s profit:%s'%(a['subjectCode'],a['subjectName'],a['costPrice'],a['closeType'], a['clientProfit'])
                 #print a
             #return resultjson
