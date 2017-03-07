@@ -21,7 +21,7 @@ import common
 600463 空港股份
 000401 冀东水泥
 300015 爱尔眼科 √
-600084 中葡股份 √
+600084 中葡股份
 600547 山东黄金 √
 ##################################
 '''
@@ -33,7 +33,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600547','300015','600084']
+    query_result = ['600547','300015']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -115,7 +115,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600547','300015','600084']
+    query_result = ['600547','300015']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
