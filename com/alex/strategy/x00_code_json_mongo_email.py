@@ -14,7 +14,7 @@ import common
 '''
 ##################################
 常量 我的持有
-000980 金马股份 √
+000980 金马股份
 600818 中路股份
 002105 信隆健康
 600891 秋林集团
@@ -22,6 +22,7 @@ import common
 000401 冀东水泥
 300015 爱尔眼科 √
 600084 中葡股份 √
+600547 山东黄金 √
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -32,7 +33,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000980','300015','600084']
+    query_result = ['600547','300015','600084']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -114,7 +115,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['000980','300015','600084']
+    query_result = ['600547','300015','600084']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
