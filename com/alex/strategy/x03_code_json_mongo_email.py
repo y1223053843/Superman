@@ -9,6 +9,7 @@ from com.alex.utils.mongo_util import *
 from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+from com.alex.strategy.strategy001 import *
 import common
 
 '''
@@ -25,6 +26,10 @@ import common
 
 能源互联网
 002610 爱康科技 与百度合作能源互联网
+
+镁金属涨价
+002182 云海金属
+002225 濮耐股份
 ##################################
 '''
 collectionName = "report_GJCGG_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -204,4 +209,11 @@ else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
     remove(collectionName)
     execute()
+
+    #镁金属涨价
+    #002182 云海金属
+    #002225 濮耐股份
+    query_result = ['002182','002225']
+    strategy001(query_result, '【主题】镁涨价', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
