@@ -86,6 +86,7 @@ else:
 
     一带一路
     000425 徐工机械
+    600031 三一重工
     '''
     query_result = ['600679','600818','002105']
     strategy001(query_result, '【主题】共享经济', collectionName)
@@ -93,7 +94,7 @@ else:
     query_result = ['002642','300009','300216','300016']
     strategy001(query_result, '【主题】基因', collectionName)
 
-    query_result = ['000425']
+    query_result = ['000425','600031']
     strategy001(query_result, '【主题】一带一路', collectionName)
 
     '''

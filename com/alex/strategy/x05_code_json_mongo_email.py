@@ -62,4 +62,9 @@ else:
     query_result = ['600667','603929','600703','300323','300327','600584','002156','002185','300346','300481','300236']
     strategy001(query_result, '【主题】半导体产业链', collectionName)
 
+    #000415 渤海金控
+    #600830 香溢融通
+    query_result = ['000415','600830']
+    strategy001(query_result, '【主题】融资租赁', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
