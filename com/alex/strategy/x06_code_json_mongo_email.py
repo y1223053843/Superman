@@ -123,7 +123,7 @@ def execute():
         caozuo2 = ''
         if xinhao.__contains__('V型翻转'):
             caozuo = ',【操作】买入点'
-            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +',【主题】手机供应链#',xinhao + xiaomowang, collectionName)
+            toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + common.gupiaomingcheng(codeItem) + '_'  + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +',【主题】手机供应链#',xinhao + xiaomowang, collectionName)
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = ',【操作】卖出点'
             #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
