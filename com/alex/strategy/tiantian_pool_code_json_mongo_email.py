@@ -12,6 +12,7 @@ from com.alex.utils.mongo_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
 import common
+from com.alex.strategy.strategy001 import *
 
 '''
 ##################################
@@ -43,6 +44,8 @@ def execute(all_code_index, all_title):
             upperband_D, middleband_D, lowerband_D, jsonResult_b_D, result_bl_D,mairuresult_bl_D,maichuresult_bl_D = BBANDS(codeItem, 'D')
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
+            query_result = [codeItem]
+            strategy002(query_result, '【主题】' + all_code.loc[codeItem,'hangye'])
             jsonDic = {}
             jsonDic['90_Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02Code'] = codeItem
