@@ -25,6 +25,8 @@ import common
 600547 山东黄金
 002155 湖南黄金
 000572 海马汽车 √
+002007 华兰生物 √
+300016 北陆药业 √
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -35,7 +37,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600547','000572']
+    query_result = ['002007','000572','300016']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -117,7 +119,7 @@ def execute():
     return xinhao
 
 def execute_param():
-    query_result = ['600547','000572']
+    query_result = ['002007','000572','300016']
     xinhao = ''
     for codeItem in query_result:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
