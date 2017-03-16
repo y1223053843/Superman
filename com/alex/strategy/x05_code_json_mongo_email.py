@@ -73,4 +73,9 @@ else:
     query_result = ['600183','002636','603228']
     strategy001(query_result, '【主题】PCB覆铜板', collectionName)
 
+    #300316 晶盛机电
+    #601012 隆基股份
+    query_result = ['300316','601012']
+    strategy001(query_result, '【主题】单晶硅供不应求', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
