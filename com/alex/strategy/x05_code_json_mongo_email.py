@@ -83,4 +83,10 @@ else:
     query_result = ['600141','600078']
     strategy001(query_result, '【主题】黄磷涨价', collectionName)
 
+    #杀虫剂涨价
+    #海利尔
+    #利尔化学
+    query_result = ['603639','002258']
+    strategy001(query_result, '【主题】杀虫剂涨价', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='

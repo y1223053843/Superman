@@ -43,4 +43,6 @@ else:
     #300044 赛为智能
     query_result = ['002230','300131','002439','300222','300044']
     strategy001(query_result, '【主题】人工智能', collectionName)
+
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
