@@ -108,7 +108,7 @@ else:
     elif (param == '4'):
         buy('SH600891','600891','R')
     else:
-        if (param.startswith('600')):
+        if (param.startswith('600') or param.startswith('601')):
             buy('SH' + param, param, 'R')
         elif (param.startswith('300') or param.startswith('000') or param.startswith('002')):
             buy('SZ' + param, param, 'R')
