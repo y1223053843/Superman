@@ -98,16 +98,16 @@ def execute():
 
         caozuo = ''
         if xinhao.__contains__('买入'):
-            caozuo = ',【操作】买入'
+            caozuo = '【操作】买入'
         elif xinhao.__contains__('卖出'):
-            caozuo = ',【操作】卖出'
+            caozuo = '【操作】卖出'
 
         caozuo2 = ''
         if xinhao.__contains__('V型翻转'):
-            caozuo = ',【操作】买入点'
-            toDataFrame_param_content({}, '★★★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_'  + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +',【主题】中国汽车品牌#',xinhao + xiaomowang, collectionName)
+            caozuo = '【操作】买入点'
+            toDataFrame_param_content({}, '★★★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_'  + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo +',【主题】中国汽车品牌#',xinhao + xiaomowang, collectionName)
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
-            caozuo = ',【操作】卖出点'
+            caozuo = '【操作】卖出点'
             #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao + xiaomowang, collectionName)
 
 
