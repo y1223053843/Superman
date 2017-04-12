@@ -9,6 +9,7 @@ from com.alex.utils.mongo_util import *
 from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+from com.alex.strategy.strategy001 import *
 import common
 
 '''
@@ -201,6 +202,19 @@ if (count == 2):
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
-    remove(collectionName)
-    execute()
+
+    '''
+    常量：贵金属
+    #黄金白银：
+    600547 山东黄金
+    002716 金贵银业
+    600891 秋林集团
+
+    #金属锑矿
+    002155 湖南黄金
+    601020 华钰矿业
+    '''
+    query_result = ['600547','002716','600891','002155','601020']
+    strategy001(query_result, '【主题】有色金属', collectionName)
+
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
