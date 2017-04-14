@@ -115,7 +115,7 @@ def execute():
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = '【操作】卖出点'
 
-        toDataFrame_param_content({}, '★★★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo +'#',xinhao + xiaomowang, collectionName)
+        toDataFrame_param_content({}, '★★★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' + common.zhangdiefu(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo +'#',xinhao + xiaomowang, collectionName)
 
     return xinhao
 
