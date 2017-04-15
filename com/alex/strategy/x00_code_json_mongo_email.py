@@ -100,8 +100,14 @@ def execute():
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
-        xiaomowang = xiaomowang + '<br> 买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+        xiaomowang = '<br>=============================='
+        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W + '<br>' + maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
+        xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+
+        xiaomowang = xiaomowang + '<br>=============================='
+        xiaomowang = xiaomowang + '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
+        xiaomowang = xiaomowang + '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
+        xiaomowang = xiaomowang + '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
 
         caozuo = ''
         if xinhao.__contains__('买入'):
@@ -115,7 +121,7 @@ def execute():
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
             caozuo = '【操作】卖出点'
 
-        toDataFrame_param_content({}, '★★★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' + common.zhangdiefu(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo +'#',xinhao + xiaomowang, collectionName)
+        toDataFrame_param_content({}, '★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' +  '%.3f' % common.dangqianjiage(codeItem) + '_' + common.zhangdiefu(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo +'#',xinhao + xiaomowang, collectionName)
 
     return xinhao
 
