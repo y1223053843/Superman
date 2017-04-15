@@ -46,7 +46,7 @@ def MACD(codeCon, type, **values):
         jsonResult['MACD_Z_' + type] = '[/]'
 
 
-    if (type == 'D' or type == '60'):
+    if (type == 'D' or type == '60' or type =='W'):
         if (macdhist[-1] < macdhist[-2] ):
             jsonResult['10_MACD柱体_' + type] = '下降1 ' + type
             maichuresult = type + '_MACD柱体下降1_'+ type + '，卖出'

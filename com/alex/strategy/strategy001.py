@@ -180,8 +180,8 @@ def strategy002(query_result, zhuti):
             print e
 
         xiaomowang = '<br>================================'
-        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
-        xiaomowang = xiaomowang + '<br> 买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W +  '<br>'+ maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
+        xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
 
         caozuo = ''
         if xinhao.__contains__('买入'):
