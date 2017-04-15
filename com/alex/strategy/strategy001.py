@@ -141,7 +141,6 @@ def strategy002(query_result, zhuti):
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
-
             # 买入策略
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
