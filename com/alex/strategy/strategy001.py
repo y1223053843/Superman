@@ -93,7 +93,10 @@ def strategy001(query_result, zhuti, collectionName):
 
         xiaomowang = '<br>================================'
         xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
-        xiaomowang = xiaomowang + '<br> 买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+        xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+        xiaomowang = xiaomowang = '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
+        xiaomowang = xiaomowang = '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
+        xiaomowang = xiaomowang = '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
 
         caozuo = ''
         if xinhao.__contains__('买入'):
