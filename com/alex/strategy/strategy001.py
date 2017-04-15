@@ -49,7 +49,6 @@ def strategy001(query_result, zhuti, collectionName):
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
-
             # 买入策略
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0
@@ -91,9 +90,11 @@ def strategy001(query_result, zhuti, collectionName):
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>================================'
+        xiaomowang = '<br>=============================='
         xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W + '<br>' + maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
         xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+
+        xiaomowang = xiaomowang + '<br>=============================='
         xiaomowang = xiaomowang + '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
         xiaomowang = xiaomowang + '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
         xiaomowang = xiaomowang + '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
