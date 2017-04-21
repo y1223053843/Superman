@@ -45,7 +45,7 @@ def execute(all_code_index, all_title):
             upperband_W, middleband_W, lowerband_W, jsonResult_b_W, result_bl_W,mairuresult_bl_W,maichuresult_bl_W = BBANDS(codeItem, 'W')
 
             query_result = [codeItem]
-            strategy002(query_result, '【主题】【选】' + all_code.loc[codeItem,'hangye'])
+            strategy002(query_result, '【主题】【选】' + all_code.loc[codeItem,'hangye'], collectionName)
             jsonDic = {}
             jsonDic['90_Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             jsonDic['02Code'] = codeItem
