@@ -197,9 +197,9 @@ def strategy002(query_result, zhuti, collectionName):
             caozuo2 = ',【操作】卖出点'
             #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
 
-        jsonDic['操作'] = caozuo
-        jsonDic['操作点'] = caozuo2
-        jsonDic['小魔王'] = xiaomowang
+        jsonDic['02_操作'] = caozuo
+        jsonDic['02_操作点'] = caozuo2
+        jsonDic['02_小魔王'] = xiaomowang
 
         # 插入数据库
         jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()

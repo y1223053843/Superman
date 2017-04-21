@@ -9,6 +9,7 @@ from com.alex.utils.mongo_util import *
 from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
+from com.alex.strategy.strategy001 import *
 import common
 
 '''
@@ -216,6 +217,6 @@ if (count == 2):
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
 else:
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email Start====='
-    remove(collectionName)
-    execute()
+    query_result = ['002273','002281','300331','300098','002635','300322','002138','002384','000049','300207','300433','300083','300327']
+    strategy001(query_result, '【主题】苹果供应链', collectionName)
     print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====my_code_json_mongo_email End====='
