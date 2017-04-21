@@ -116,7 +116,7 @@ def strategy001(query_result, zhuti, collectionName):
     return xinhao
 
 
-def strategy002(query_result, zhuti):
+def strategy002(query_result, zhuti, collectionName):
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -170,35 +170,43 @@ def strategy002(query_result, zhuti):
             jsonDic['验证_布林_60'] =  '%.3f' % middleband_60[-1] + '_' +  '%.3f' % middleband_60[-2] + '_' +  '%.3f' % middleband_60[-3]
             jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
             jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
-
-            # 插入数据库
-            # jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
-            #                 + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
-            #                 + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
-
-            # insertRecord_param(jsonParam, collectionName)
-
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>================================'
-        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W +  '<br>'+ maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
+        xiaomowang = '<br>=============================='
+        xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W + '<br>' + maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
         xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
+
+        xiaomowang = xiaomowang + '<br>=============================='
+        xiaomowang = xiaomowang + '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
+        xiaomowang = xiaomowang + '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
+        xiaomowang = xiaomowang + '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
 
         caozuo = ''
         if xinhao.__contains__('买入'):
-            caozuo = ',【操作】买入'
+            caozuo = '【操作】买入'
         elif xinhao.__contains__('卖出'):
-            caozuo = ',【操作】卖出'
+            caozuo = '【操作】卖出'
 
         caozuo2 = ''
         if xinhao.__contains__('V型翻转'):
-            caozuo = ',【操作】买入点'
-            toDataFrame_param_content({}, '★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 + ',' + zhuti + '#',xinhao + xiaomowang, collectionName)
+            caozuo2 = '【操作】买入点'
+            #toDataFrame_param_content({}, '★★★My_Code_' + common.gupiaomingcheng(codeItem) + '_' +  '%.3f' % common.dangqianjiage(codeItem) + ' ' + common.zhangdiefu(codeItem) + '_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#'+ caozuo + caozuo2 + ',' + zhuti + '#',xinhao + xiaomowang, collectionName)
         elif xinhao.__contains__('下降1') or xinhao.__contains__('上穿'):
-            caozuo = ',【操作】卖出点'
+            caozuo2 = ',【操作】卖出点'
             #toDataFrame_param_content({}, '★★★★★My_Code_JSON_Mongo_' + time.strftime('%Y-%m-%d_%H:%M', time.localtime(time.time())) + '#【长期关注】'+ common.gupiaomingcheng(codeItem) + caozuo + caozuo2 +'#',xinhao, collectionName)
+
+        jsonDic['操作'] = caozuo
+        jsonDic['操作点'] = caozuo2
+        jsonDic['小魔王'] = xiaomowang
+
+        # 插入数据库
+        jsonParam = dict(jsonResult_30.items() + jsonResult_60.items() + jsonResult_D.items()
+                             + jsonResult_W.items() + jsonResult_b_30.items() + jsonResult_b_60.items()
+                             + jsonResult_b_D.items() + jsonResult_b_W.items() + jsonDic.items())
+
+        insertRecord_param(jsonParam, collectionName)
 
     return xinhao
 

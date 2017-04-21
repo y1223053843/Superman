@@ -13,6 +13,7 @@ from com.alex.function.macd import *
 from com.alex.function.ma import *
 from com.alex.function.bbands import *
 import common
+from com.alex.strategy.strategy001 import *
 import math
 
 '''
@@ -29,7 +30,7 @@ collectionName2 = "report_tiantain_all_" + time.strftime('%Y-%m-%d', time.localt
 说明：
 #################################
 '''
-def execute(all_code_index, all_title, all_time):
+def execute2(all_code_index, all_title, all_time):
 
     all_code = DataFrame({'codeitem':all_code_index,'hangye':all_title,'time':all_time},index=all_code_index)
     all_code_drop = all_code.drop_duplicates('codeitem')
@@ -128,6 +129,29 @@ def execute(all_code_index, all_title, all_time):
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
             print e
+
+
+
+
+
+
+
+def execute(all_code_index, all_title, all_time):
+
+    all_code = DataFrame({'codeitem':all_code_index,'hangye':all_title,'time':all_time},index=all_code_index)
+    all_code_drop = all_code.drop_duplicates('codeitem')
+
+    all_code_time = DataFrame(all_time,index=all_code_index,columns=['time'])
+
+    for codeItem in all_code_drop['codeitem']:
+        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
+        try:
+            strategy002({codeItem},all_code_drop.loc[codeItem,'hangye'],collectionName2)
+        except (IOError, TypeError, NameError, IndexError,Exception) as e:
+            logging.error("error:" + codeItem)
+            print e
+
+
 
 '''
 ###############################################################################
