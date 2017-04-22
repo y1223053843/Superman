@@ -30,6 +30,7 @@ import common
 600667 太极实业
 600895 张江高科 √
 600777 新潮能源 √
+002658 雪迪龙 √
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -40,7 +41,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600895','000572','600777']
+    query_result = ['600895','000572','600777','002658']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
