@@ -90,14 +90,14 @@ def strategy001(query_result, zhuti, collectionName):
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>=============================='
+        xiaomowang = '<br>==============================' + common.gupiaomingcheng(codeItem)
         xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W + '<br>' + maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
         xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
 
         xiaomowang = xiaomowang + common.xiaomowangkuozhan('000001')
         xiaomowang = xiaomowang + common.xiaomowangkuozhan('399006')
 
-        xiaomowang = xiaomowang + '<br>=============================='
+        xiaomowang = xiaomowang + '<br>==============================' + common.gupiaomingcheng(codeItem)
         xiaomowang = xiaomowang + '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
         xiaomowang = xiaomowang + '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
         xiaomowang = xiaomowang + '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
