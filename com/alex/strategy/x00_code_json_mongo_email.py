@@ -30,6 +30,7 @@ import common
 600667 太极实业
 600895 张江高科
 600777 新潮能源 √
+300131 英唐智控 √
 002658 雪迪龙
 ##################################
 '''
@@ -41,7 +42,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600777']
+    query_result = ['600777','300131']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
@@ -103,14 +104,14 @@ def execute():
             logging.error("error:" + codeItem)
             print e
 
-        xiaomowang = '<br>=============================='
+        xiaomowang = '<br>==============================' + common.gupiaomingcheng(codeItem)
         xiaomowang = xiaomowang + '<br>卖出信号：<br>' +  maichuresult_W + '<br>' + maichuresult_D + '<br>' + maichuresult_60 + '<br>' + maichuresult_bl_60 + '<br>' + maichuresult_bl_D
         xiaomowang = xiaomowang + '<br>买入信号：<br>' +  mairuresult_W + '<br>' + mairuresult_D + '<br> ' + mairuresult_60 + '<br>' + mairuresult_bl_60 + '<br>' + mairuresult_bl_D
 
         xiaomowang = xiaomowang + common.xiaomowangkuozhan('000001')
         xiaomowang = xiaomowang + common.xiaomowangkuozhan('399006')
 
-        xiaomowang = xiaomowang + '<br>=============================='
+        xiaomowang = xiaomowang + '<br>==============================' + common.gupiaomingcheng(codeItem)
         xiaomowang = xiaomowang + '<br>60验证：' +  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
         xiaomowang = xiaomowang + '<br>D验证：' + '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
         xiaomowang = xiaomowang + '<br>W验证：' + '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
