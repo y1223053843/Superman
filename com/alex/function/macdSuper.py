@@ -34,16 +34,16 @@ def MACD_shangshengtianshu(codeCon, type, **values):
 
     shangshengtianshu = 0
     if (type == 'D'):
-        if (macdsignal[-1] > macdsignal[-2]):
+        if (macd[-1] > macd[-2]):
             shangshengtianshu = 1
 
-            if (macdsignal[-2] > macdsignal[-3]):
+            if (macd[-2] > macd[-3]):
                 shangshengtianshu = 2
 
-                if (macdsignal[-3] > macdsignal[-4]):
+                if (macd[-3] > macd[-4]):
                     shangshengtianshu = 3
 
-                    if (macdsignal[-4] > macdsignal[-5]):
+                    if (macd[-4] > macd[-5]):
                         shangshengtianshu = 4
 
     return shangshengtianshu
