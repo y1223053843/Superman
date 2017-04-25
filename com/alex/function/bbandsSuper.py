@@ -27,6 +27,12 @@ def BBANDS_shangshengtianshu(codeCon, type, **values):
 
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=26, nbdevup=2, nbdevdn=2, matype=0)
 
+    #print middleband[-1]
+    #print middleband[-2]
+    #print middleband[-3]
+    #print middleband[-4]
+    #print middleband[-5]
+
     shangshengtianshu = 0
     if (type == 'D'):
         if (middleband[-1] > middleband[-2]):
@@ -43,6 +49,7 @@ def BBANDS_shangshengtianshu(codeCon, type, **values):
 
     return shangshengtianshu
 
+#print BBANDS_shangshengtianshu('300463','D')
 #upperband, middleband, lowerband, jsonResult, result,mairuresult,maichuresult = BBANDS('300201', 'D')
 #print jsonResult
 #print result

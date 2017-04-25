@@ -26,6 +26,12 @@ def MACD_shangshengtianshu(codeCon, type, **values):
     # macd 为快线 macdsignal为慢线，macdhist为柱体
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
+    #print macdsignal[-1]
+    #print macdsignal[-2]
+    #print macdsignal[-3]
+    #print macdsignal[-4]
+    #print macdsignal[-5]
+
     shangshengtianshu = 0
     if (type == 'D'):
         if (macdsignal[-1] > macdsignal[-2]):
@@ -37,8 +43,12 @@ def MACD_shangshengtianshu(codeCon, type, **values):
                 if (macdsignal[-3] > macdsignal[-4]):
                     shangshengtianshu = 3
 
+                    if (macdsignal[-4] > macdsignal[-5]):
+                        shangshengtianshu = 4
+
     return shangshengtianshu
 
+#print MACD_shangshengtianshu('300463', 'D')
 #macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D')
 #macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D', end = '2016-12-15')
 #print macd
