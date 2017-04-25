@@ -114,7 +114,11 @@ def strategy002(query_result, zhuti, collectionName):
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
             jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
             jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
-            jsonDic['07MACD和BULL并行上升天数'] = MACD_Bull_bingxingtianshu(codeItem,'D')
+
+            r1,r2,r3 = MACD_Bull_bingxingtianshu(codeItem,'D')
+            jsonDic['07MACD上升天数'] = r1
+            jsonDic['07BULL上升天数'] = r2
+            jsonDic['07MACD和BULL并行上升天数'] = r3
 
             # 买入策略
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):

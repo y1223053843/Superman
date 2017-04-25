@@ -16,9 +16,9 @@ from com.alex.function.macdSuper import *
 def MACD_Bull_bingxingtianshu(codeCon, type, **values):
     macd_shangshengtianshu = MACD_shangshengtianshu(codeCon,type)
     bbands_shangshengtianshu = BBANDS_shangshengtianshu(codeCon,type)
+    min_shangshengtianshu = min(macd_shangshengtianshu, bbands_shangshengtianshu)
 
-
-    return min(macd_shangshengtianshu, bbands_shangshengtianshu)
+    return macd_shangshengtianshu,bbands_shangshengtianshu,min_shangshengtianshu
 
 #macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D')
 #macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D', end = '2016-12-15')
