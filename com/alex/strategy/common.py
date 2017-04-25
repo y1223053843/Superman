@@ -5,7 +5,7 @@ import numpy as num
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
 
-
+# 涨跌幅
 def zhangdiefu(code):
 
      if (code == '000001'):
@@ -20,6 +20,7 @@ def zhangdiefu(code):
 
      return "%.2f" % (((realTimeArray[0] - pre_close[0]) / pre_close[0]) * 100) + '%'
 
+#股票名称
 def gupiaomingcheng(code):
 
      if (code == '000001'):
@@ -28,11 +29,13 @@ def gupiaomingcheng(code):
      nameArray = num.array(data_realTime['name'])
      return nameArray[0]
 
+#是否持有
 def shifouchiyou(code) :
      chiyou_code_index = num.array(['300349'])
      if (chiyou_code_index.__contains__(code)):
           return 'yes'
 
+#当前价格
 def dangqianjiage(code) :
      if (code == '000001'):
          code = 'sh'
@@ -42,6 +45,7 @@ def dangqianjiage(code) :
      realTimeArray = realTimeArray.astype(num.float)
      return realTimeArray[0]
 
+#小魔王扩展
 def xiaomowangkuozhan(codeItem) :
      # MACD
      macd_60,macdsignal_60,macdhist_60,jsonResult_60,result_60,mairuresult_60,maichuresult_60  = MACD(codeItem,  '60')
