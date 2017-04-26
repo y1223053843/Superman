@@ -14,8 +14,9 @@ import common
 '''
 ##################################
 常量 我的持有
-600777 新潮能源 √ 所在行业如何？
-300131 英唐智控 √ 所在行业如何？
+600421 仰帆控股 √
+300463 迈克生物 √
+
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -26,7 +27,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600777','300131']
+    query_result = ['600421','300463']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
