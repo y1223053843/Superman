@@ -14,8 +14,17 @@ import common
 '''
 ##################################
 常量 我的持有
-600421 仰帆控股 √
-300463 迈克生物 √
+
+常量：贵金属
+#黄金白银：
+600547 山东黄金
+002716 金贵银业
+600891 秋林集团
+
+#金属锑矿
+002155 湖南黄金
+601020 华钰矿业
+白银有色 601212
 
 ##################################
 '''
@@ -27,7 +36,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['600421','300463']
+    query_result = ['600547','002716','600891','002155','601212']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
