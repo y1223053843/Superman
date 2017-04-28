@@ -46,7 +46,7 @@ def execute():
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             print e
             logging.error("error:" + codeItem)
-
+    '''
     for codeItem in zhishu_code_index:
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(count)
         try:
@@ -100,6 +100,7 @@ def execute():
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             print e
             logging.error("error:" + codeItem)
+    '''
 
 '''
 ###############################################################################

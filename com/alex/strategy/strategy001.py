@@ -112,8 +112,8 @@ def strategy002(query_result, zhuti, collectionName):
             jsonDic['02Code'] = '_' + codeItem
             jsonDic['03Name'] = common.gupiaomingcheng(codeItem)
             jsonDic['04涨跌幅'] = common.zhangdiefu(codeItem)
-            jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
-            jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
+            #jsonDic['051日买入信息'] = mairuresult_D + ' ' + mairuresult_bl_D
+            #jsonDic['052时买入信息'] =  mairuresult_60 + ' ' + mairuresult_bl_60
 
             r1,r2,r3 = MACD_Bull_bingxingtianshu(codeItem,'D')
             jsonDic['07MACD上升天数'] = r1
