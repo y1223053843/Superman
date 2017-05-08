@@ -120,6 +120,11 @@ def strategy002(query_result, zhuti, collectionName):
             jsonDic['07BULL上升天数'] = r2
             jsonDic['07MACD和BULL并行上升天数'] = r3
 
+            rh1,rh2,rh3 = MACD_Bull_bingxingtianshu(codeItem,'60')
+            jsonDic['08MACD上升小时数'] = rh1
+            jsonDic['08BULL上升小时数'] = rh2
+            jsonDic['08MACD和BULL并行上升小时数'] = rh3
+
             # 买入策略
             if (mairuresult_60  != '' or mairuresult_bl_60 != ''):
                 i = 0

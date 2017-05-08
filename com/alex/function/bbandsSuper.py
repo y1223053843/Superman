@@ -34,7 +34,7 @@ def BBANDS_shangshengtianshu(codeCon, type, **values):
     #print middleband[-5]
 
     shangshengtianshu = 0
-    if (type == 'D'):
+    if (type == 'D' or type == '60'):
         if (middleband[-1] > middleband[-2]):
             shangshengtianshu = 1
 

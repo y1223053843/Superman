@@ -33,7 +33,7 @@ def MACD_shangshengtianshu(codeCon, type, **values):
     #print macdsignal[-5]
 
     shangshengtianshu = 0
-    if (type == 'D'):
+    if (type == 'D' or type == '60'):
         if (macdsignal[-1] > macdsignal[-2]):
             shangshengtianshu = 1
 
