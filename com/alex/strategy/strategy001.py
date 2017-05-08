@@ -142,14 +142,14 @@ def strategy002(query_result, zhuti, collectionName):
                     j = j + 1
 
             # 验证
-            jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-1] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-3]
-            jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-1] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-3]
-            jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-1] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-3]
-            jsonDic['验证_MACD_W'] =  '%.3f' % macd_W[-1] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-3]
-            jsonDic['验证_布林_30'] =  '%.3f' % middleband_30[-1] + '_' +  '%.3f' % middleband_30[-2] + '_' +  '%.3f' % middleband_30[-3]
-            jsonDic['验证_布林_60'] =  '%.3f' % middleband_60[-1] + '_' +  '%.3f' % middleband_60[-2] + '_' +  '%.3f' % middleband_60[-3]
-            jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-1] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-3]
-            jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-1] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-3]
+            jsonDic['验证_MACD_30'] =  '%.3f' % macd_30[-3] + '_' +  '%.3f' % macd_30[-2] + '_' +  '%.3f' % macd_30[-1]
+            jsonDic['验证_MACD_60'] =  '%.3f' % macd_60[-3] + '_' +  '%.3f' % macd_60[-2] + '_' +  '%.3f' % macd_60[-1]
+            jsonDic['验证_MACD_D'] =  '%.3f' % macd_D[-3] + '_' +  '%.3f' % macd_D[-2] + '_' +  '%.3f' % macd_D[-1]
+            jsonDic['验证_MACD_W'] =  '%.3f' % macd_W[-3] + '_' +  '%.3f' % macd_W[-2] + '_' +  '%.3f' % macd_W[-1]
+            jsonDic['验证_布林_30'] =  '%.3f' % middleband_30[-3] + '_' +  '%.3f' % middleband_30[-2] + '_' +  '%.3f' % middleband_30[-1]
+            jsonDic['验证_布林_60'] =  '%.3f' % middleband_60[-3] + '_' +  '%.3f' % middleband_60[-2] + '_' +  '%.3f' % middleband_60[-1]
+            jsonDic['验证_布林_D'] =  '%.3f' % middleband_D[-3] + '_' +  '%.3f' % middleband_D[-2] + '_' +  '%.3f' % middleband_D[-1]
+            jsonDic['验证_布林_W'] =  '%.3f' % middleband_W[-3] + '_' +  '%.3f' % middleband_W[-2] + '_' +  '%.3f' % middleband_W[-1]
         except (IOError, TypeError, NameError, IndexError,Exception) as e:
             logging.error("error:" + codeItem)
             print e
