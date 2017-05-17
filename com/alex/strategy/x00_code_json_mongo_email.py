@@ -26,6 +26,11 @@ import common
 601020 华钰矿业
 白银有色 601212
 
+300271 华宇软件
+000920 南方汇通
+002716 金贵银业
+300446 乐凯新材
+
 ##################################
 '''
 collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -36,7 +41,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000001','399006','000920','002716','300446']
+    query_result = ['000001','399006','000920','002716','300446','300271']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
