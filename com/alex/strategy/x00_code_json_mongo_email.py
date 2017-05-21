@@ -30,6 +30,7 @@ import common
 000920 南方汇通
 002716 金贵银业
 300446 乐凯新材
+600191 华资实业
 
 ##################################
 '''
@@ -41,7 +42,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000001','399006','000920','002716','300446','300271']
+    query_result = ['000001','399006','000920','002716','300446','300271','600191']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
