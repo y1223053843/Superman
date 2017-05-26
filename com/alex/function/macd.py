@@ -33,6 +33,8 @@ def MACD(codeCon, type, **values):
     # macd 为快线 macdsignal为慢线，macdhist为柱体
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
+
+
     tableresult = ''
     mairuresult = ''
     maichuresult = ''
@@ -60,11 +62,42 @@ def MACD(codeCon, type, **values):
                         jsonResult['10_MACD柱体_' + type] = '下降4 ' + type
                         maichuresult = type + '_MACD柱体下降4_'+ type + '，卖出'
 
+                        if (codeCon == '000001' or codeCon == '399006'):
+                            if (macdhist[-5] < macdhist[-6] ):
+                                maichuresult = type + '_MACD柱体下降5_'+ type + '，卖出'
+
+                                if (macdhist[-6] < macdhist[-7] ):
+                                    maichuresult = type + '_MACD柱体下降6_'+ type + '，卖出'
+
+                                    if (macdhist[-7] < macdhist[-8] ):
+                                        maichuresult = type + '_MACD柱体下降7_'+ type + '，卖出'
+
+                                        if (macdhist[-8] < macdhist[-9] ):
+                                            maichuresult = type + '_MACD柱体下降8_'+ type + '，卖出'
+
+                                            if (macdhist[-9] < macdhist[-10] ):
+                                                maichuresult = type + '_MACD柱体下降9_'+ type + '，卖出'
+
+                                                if (macdhist[-10] < macdhist[-11] ):
+                                                    maichuresult = type + '_MACD柱体下降10_'+ type + '，卖出'
+
+                                                    if (macdhist[-11] < macdhist[-12] ):
+                                                        maichuresult = type + '_MACD柱体下降11_'+ type + '，卖出'
+
+                                                        if (macdhist[-12] < macdhist[-13] ):
+                                                            maichuresult = type + '_MACD柱体下降12_'+ type + '，卖出'
+
+                                                            if (macdhist[-13] < macdhist[-14] ):
+                                                                maichuresult = type + '_MACD柱体下降13_'+ type + '，卖出'
+
+                                                                if (macdhist[-14] < macdhist[-15] ):
+                                                                    maichuresult = type + '_MACD柱体下降14_'+ type + '，卖出'
+
     #if (macdsignal[-1] > macdsignal[-2]):
     #    jsonResult['MACD_M_' + type] = '[/]'
     #if (macdsignal[-1] < macdsignal[-2]):
     #    jsonResult['MACD_M_' + type] = '[\]'
-    if (codeCon == '000001' or codeCon == '600547'):
+    if (codeCon == '000001' or codeCon == '600547' or codeCon == '399006'):
         jsonResult['MACD慢线小于0_' + type] = 'Y'
         if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
             jsonResult['MACD底部V型翻转_' + type] = 'Y'
@@ -79,6 +112,17 @@ def MACD(codeCon, type, **values):
                     tmp = type + '_MACD柱体上升3_'+ type + '，买入'
                     if (macdhist[-4] > macdhist[-5]):
                         tmp = type + '_MACD柱体上升4_'+ type + '，买入'
+
+                        if (macdhist[-5] > macdhist[-6]):
+                            tmp = type + '_MACD柱体上升5_'+ type + '，买入'
+                            if (macdhist[-6] > macdhist[-7]):
+                                tmp = type + '_MACD柱体上升6_'+ type + '，买入'
+                                if (macdhist[-7] > macdhist[-8]):
+                                    tmp = type + '_MACD柱体上升7_'+ type + '，买入'
+                                    if (macdhist[-8] > macdhist[-9]):
+                                        tmp = type + '_MACD柱体上升8_'+ type + '，买入'
+                                        if (macdhist[-9] > macdhist[-10]):
+                                            tmp = type + '_MACD柱体上升9_'+ type + '，买入'
 
             mairuresult += tmp
     else:
