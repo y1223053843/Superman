@@ -38,6 +38,7 @@ def execute():
     query_result = ['002420','300082','300273','002551','300217','600790','002716','600547','000001','399006']
     for codeItem in query_result:
         xinhao = ''
+        xinhao += '菲波那切数列{2, 3, 5, 8, 13, 21}<br>'
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
         try:
             macd_30,macdsignal_30,macdhist_30,jsonResult_30,result_30,mairuresult_30,maichuresult_30  = MACD(codeItem,  '30')
