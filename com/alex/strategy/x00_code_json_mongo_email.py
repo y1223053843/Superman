@@ -35,7 +35,7 @@ collectionName = "report_WDCY_" + time.strftime('%Y-%m-%d', time.localtime(time.
 #################################
 '''
 def execute():
-    query_result = ['000001','399006','002420','300082','300273','002551','300217','600790','002716','600547']
+    query_result = ['002420','300082','300273','002551','300217','600790','002716','600547','000001','399006']
     for codeItem in query_result:
         xinhao = ''
         print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem
