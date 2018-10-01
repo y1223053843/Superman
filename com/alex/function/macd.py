@@ -33,8 +33,6 @@ def MACD(codeCon, type, **values):
     # macd 为快线 macdsignal为慢线，macdhist为柱体
     macd,macdsignal,macdhist = ta.MACD(num.asarray(closeArray,dtype='double'), fastperiod=12, slowperiod=26, signalperiod=9)
 
-
-
     tableresult = ''
     mairuresult = ''
     maichuresult = ''
@@ -46,7 +44,6 @@ def MACD(codeCon, type, **values):
     #    maichuresult += type + '_MACD顶部八字翻转，卖出'
     if (macdhist[-1] > macdhist[-2] and macdhist[-2] > macdhist[-3]):
         jsonResult['MACD_Z_' + type] = '[/]'
-
 
     if (type == 'D' or type == '60' or type =='W'):
         if (macdhist[-1] < macdhist[-2] ):
