@@ -9,13 +9,15 @@ sys.setdefaultencoding('utf-8')
 
 '''
 ###############################################################################
-执行函数:执行MACD操作
+执行函数:执行布林线操作
 说明：
 参数1 codeCon 数据编码
 参数2 type 类型
 ###############################################################################
 '''
 def BBANDS(codeCon, type, **values):
+
+    # 01、获取历史数据
     data_history = ''
     if (values.get('end') == None):
         if (codeCon == '000001'):
@@ -28,6 +30,7 @@ def BBANDS(codeCon, type, **values):
         else:
             data_history = ts.get_k_data(codeCon, ktype = type, end=values.get('end'))
 
+    # 02、 数据格式处理、并计算布林线值
     closeArray = num.array(data_history['close'])
     highArray = num.array(data_history['high'])
     lowArray = num.array(data_history['low'])
@@ -38,21 +41,11 @@ def BBANDS(codeCon, type, **values):
 
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=26, nbdevup=2, nbdevdn=2, matype=0)
 
+    # 对返回结果进行计算
     result = ''
     jsonResult = {}
     mairuresult = ''
     maichuresult = ''
-    #if (middleband[-1] > middleband[-2] and middleband[-3] > middleband[-2]):
-    #    jsonResult['布林_M_' + type] = '[V]'
-
-    #if (middleband[-1] < middleband[-2] and middleband[-3] < middleband[-2]):
-    #    jsonResult['布林_M_' + type] = '[/\]'
-
-    #if (middleband[-1] > middleband[-2] and middleband[-2] > middleband[-3]):
-    #    jsonResult['布林_M_' + type] = '[/]'
-
-    #if (middleband[-1] < middleband[-2] and middleband[-2] < middleband[-3]):
-    #    jsonResult['布林_M_' + type] = '[\]'
 
     tianshu = ''
     if (type == 'X'):
