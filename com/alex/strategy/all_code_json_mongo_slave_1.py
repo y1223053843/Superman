@@ -1,6 +1,7 @@
-#encoding=utf-8
+# encoding=utf-8
 
 import sys
+
 sys.path.append('/root/worksapce/Superman')
 import logging
 import ConfigParser
@@ -21,7 +22,7 @@ import common
 ##################################
 '''
 cf = ConfigParser.RawConfigParser()
-cf.read('../config/spark002_dev.conf')
+# cf.read('../config/spark002_dev.conf')
 
 '''
 #################################
@@ -36,15 +37,16 @@ def execute():
     count = 0
     all_code_index_x = num.array(all_code_index)
     for codeItem in all_code_index_x:
-        #if (count == 100):
-        #    break
         count = count + 1
-        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(count)
+        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + "=====" + codeItem + ',Count:' + str(
+            count)
         try:
-            strategy002({codeItem}, all_code.loc[codeItem,'industry'], "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
-        except (IOError, TypeError, NameError, IndexError,Exception) as e:
+            strategy002({codeItem}, all_code.loc[codeItem, 'industry'],
+                        "report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+        except (IOError, TypeError, NameError, IndexError, Exception) as e:
             print e
             logging.error("error:" + codeItem)
+
 
 '''
 ###############################################################################
@@ -55,8 +57,6 @@ param = sys.argv[0]
 if (param == 1):
     print 'param:' + param
 else:
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo Start====='
-    #remove("report_" + time.strftime('%Y-%m-%d', time.localtime(time.time())))
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '=====All_code_json_mongo Start====='
     execute()
-    #toDataFrame({},{'01_日买入信息':'D_MACD在底部V型翻转，买入 D_最低值下穿布林线下轨，买入'},'All_Code_JSON_Mongo','All_Part_Code_JSON_Mongo')
-    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) +  '=====All_code_json_mongo End====='
+    print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '=====All_code_json_mongo End====='
