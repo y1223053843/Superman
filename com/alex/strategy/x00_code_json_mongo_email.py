@@ -6,7 +6,6 @@ import logging
 from pandas import DataFrame
 import time as time
 from com.alex.utils.mongo_util import *
-from com.alex.utils.mysql_util import *
 from com.alex.function.macd import *
 from com.alex.function.bbands import *
 import common

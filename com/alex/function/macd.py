@@ -179,8 +179,7 @@ def MACD(codeCon, type, **values):
 
     return macd,macdsignal,macdhist,jsonResult,tableresult,mairuresult,maichuresult
 
-#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D')
+#macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('600703', 'M')
 #macd,macdsignal,macdhist,jsonResult,result,mairuresult,maichuresult = MACD('399006', 'D', end = '2016-12-15')
 #print macd
-#print jsonResult
-#print result
+#print macdsignal

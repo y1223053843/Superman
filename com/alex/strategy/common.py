@@ -40,10 +40,21 @@ def dangqianjiage(code) :
      if (code == '000001'):
          code = 'sh'
      data_realTime = ts.get_realtime_quotes(code)
-
+     # print data_realTime
      realTimeArray = num.array(data_realTime['price'])
      realTimeArray = realTimeArray.astype(num.float)
      return realTimeArray[0]
+
+#最低价格
+def zuidijiage(codeCon, type) :
+     if (codeCon == '000001'):
+          data_history = ts.get_k_data(codeCon, ktype=type, index='true')
+     else:
+          data_history = ts.get_k_data(codeCon, ktype=type)
+
+     zuijdijiage = num.array(data_history['low'])
+     zuijdijiage = zuijdijiage.astype(num.float)
+     return zuijdijiage[-1]
 
 #小魔王扩展
 def xiaomowangkuozhan(codeItem) :
@@ -67,3 +78,4 @@ def xiaomowangkuozhan(codeItem) :
 #print gupiaomingcheng('150212')
 #print shifouchiyou('150212')
 #print dangqianjiage('600547')
+#print zuidijiage('600547', 'W')

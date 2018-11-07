@@ -33,7 +33,7 @@ cf = ConfigParser.RawConfigParser()
 def execute():
     time.sleep(1)
     all_code = ts.get_stock_basics()
-    all_code_index = all_code[750:1350].index
+    all_code_index = all_code[800:1600].index
     count = 0
     all_code_index_x = num.array(all_code_index)
     for codeItem in all_code_index_x:
