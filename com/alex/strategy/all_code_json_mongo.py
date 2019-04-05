@@ -2,7 +2,7 @@
 
 import sys
 
-sys.path.append('/root/worksapce/Superman')
+sys.path.append('/root/workspace/Superman')
 import logging
 import ConfigParser
 import tushare as ts
