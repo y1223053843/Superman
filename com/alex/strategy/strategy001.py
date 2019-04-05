@@ -46,8 +46,8 @@ def strategy002(query_result, zhuti, collectionName):
 
             jsonDic = {}
             # jsonDic['90_Time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            jsonDic['aaaInfo_股票编码'] = '_' + codeItem
-            jsonDic['aaaInfo_股票名称'] = common.gupiaomingcheng(codeItem)
+            jsonDic['aaaInfo_1股票编码'] = '_' + codeItem
+            jsonDic['aaaInfo_2股票名称'] = common.gupiaomingcheng(codeItem)
             jsonDic['aaaInfo_股票涨跌幅'] = common.zhangdiefu(codeItem)
 
             # MACD
@@ -93,29 +93,42 @@ def strategy002(query_result, zhuti, collectionName):
                 stra001 = stra001 + '2'
             if ( (common.zuidijiage(codeItem, 'W') - lowerband_W[-1]) < 0):
                 stra001 = stra001 + '3'
-            jsonDic['aaaInfo_stra001'] = stra001
+            jsonDic['aaaInfo_stra001_MACD月线大于0，MACD月线柱体处于上升阶段，布林周线下穿'] = stra001
 
+            # 策略2
+            # MACD月线大于0，MACD月线柱体转折，布林周线下穿
+            stra002 = ''
             if (macdsignal_M[-1] > 0):
-                jsonDic['04【策略01】_MACD_月线_慢线大于0'] = 1
-                jsonDic['05【策略02】_MACD_月线_慢线大于0'] = 1
-                jsonDic['06【策略03】_MACD_月线_慢线大于0'] = 1
-            if (macdhist_M[-1] > macdhist_M[-2]):
-                jsonDic['04【策略01】_MACD_月线_柱体上升趋势'] = 1
-                jsonDic['05【策略02】_MACD_月线_柱体上升趋势'] = 1
-                jsonDic['06【策略03】_MACD_月线_柱体上升趋势'] = 1
+                stra002 = stra002 + '1'
             if (macdhist_M[-1] > macdhist_M[-2] and  macdhist_M[-3] > macdhist_M[-2]):
-                jsonDic['04_MACD_月线_柱体转折'] = 1
-            if (macdhist_W[-1] > macdhist_W[-2] and macdhist_W[-3] > macdhist_W[-2]):
-                jsonDic['04_MACD_周线_柱体转折'] = 1
-            if (macdhist_W[-1] < macdhist_W[-4] or  macdhist_W[-1] < macdhist_W[-5] ):
-                jsonDic['05【策略02】_MACD_周线_持续下跌，等待时机'] = 1
+                stra002 = stra002 + '2'
+            if ((common.zuidijiage(codeItem, 'W') - lowerband_W[-1]) < 0):
+                stra002 = stra002 + '3'
+            jsonDic['aaaInfo_stra002_MACD月线大于0，MACD月线柱体转折，布林周线下穿'] = stra002
 
-            if (middleband_W[-1] > middleband_W[-4]):
-                jsonDic['04【策略01】_布林_周线_上升趋势'] = 1
-            if ( (common.dangqianjiage(codeItem) - lowerband_W[-1]) / common.dangqianjiage(codeItem) < 0.1):
-                jsonDic['06【策略03】_布林_周线_小于10%'] = 1
+            # 策略3
+            # MACD月线大于0，MACD月线柱体转折，布林周线下穿
+            stra003 = ''
+            if (macdsignal_M[-1] > 0):
+                stra003 = stra003 + '1'
+            if (macdhist_M[-1] > macdhist_M[-2]):
+                stra003 = stra003 + '2'
+            if (macdhist_W[-1] < macdhist_W[-4] or  macdhist_W[-1] < macdhist_W[-5]):
+                stra003 = stra003 + '3'
+            jsonDic['aaaInfo_stra003_MACD月线大于0，MACD月线柱体处于上升阶段，MACD_周线_持续下跌，等待时机'] = stra003
+
+            # 策略4
             if ( (common.zuidijiage(codeItem, 'W') - lowerband_W[-1]) < 0):
-                jsonDic['07【策略04】_布林_周线_收在下方'] = 1
+                jsonDic['aaaInfo_stra004_布林_周线_收在下方'] = 1
+
+            # 策略5
+            if ((common.zuidijiage(codeItem, 'D') - lowerband_D[-1]) < 0):
+                jsonDic['aaaInfo_stra005_布林_日线_收在下方'] = 1
+                if ((middleband_D[-1]-lowerband_D[-1])/lowerband_D[-1] > 0.05):
+                    jsonDic['aaaInfo_stra005_布林_日线_收在下方,上升空间大于5%'] = 1
+                    if((common.zuidijiage(codeItem, 'D')-lowerband_W[-1])/common.zuidijiage(codeItem, 'D') < 0.1):
+                        jsonDic['aaaInfo_stra005_布林_日线_收在下方,距离布林周线小于10%'] = 1
+
         except (IOError, TypeError, NameError, IndexError, Exception) as e:
             logging.error("error:" + codeItem)
             print e
